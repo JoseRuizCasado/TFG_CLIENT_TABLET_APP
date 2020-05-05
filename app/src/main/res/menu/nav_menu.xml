@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_item_my_team"
+            android:checked="true"
+            android:title="@string/nav_item_my_team"
+            android:icon="@drawable/ic_my_team"
+            />
+
+        <item
+            android:id="@+id/nav_item_teams"
+            android:title="@string/nav_item_teams"
+            android:icon="@drawable/ic_nba_icon"
+            />
+
+        <item
+            android:id="@+id/nav_item_help"
+            android:title="@string/nav_item_help"
+            android:icon="@drawable/ic_help_outline_black_24dp"
+            />
+
+
+    </group>
+
+</menu>
