@@ -1,12 +1,17 @@
 package com.example.nbaanalyzer
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.support.v7.widget.Toolbar
+import android.widget.Toast
+import com.example.nbaanalyzer.ui.my_team.MyTeamFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,10 +21,46 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        // Create the app toolbar
         addToolBar()
+
+        // Prepare NavigationView to select item
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        if(navigationView != null){
+            setUpDrawer(navigationView)
+            // Item selection by default
+            itemSelection(navigationView.menu.getItem(0))
+        }
 
         drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
+    }
+
+    private fun setUpDrawer(navigationView: NavigationView) {
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            menuItem.isChecked = true
+            itemSelection(menuItem)
+            drawerLayout.closeDrawers()
+            true
+        }
+    }
+
+    private fun itemSelection(menuItem: MenuItem) {
+        var genericFragment: Fragment? = null
+        val fragmentManager = supportFragmentManager
+
+        when (menuItem.itemId){
+            R.id.nav_item_my_team -> genericFragment = MyTeamFragment()
+            R.id.nav_item_teams -> Toast.makeText(this, "TEAMS options is selected", Toast.LENGTH_SHORT).show()
+            R.id.nav_item_help -> Toast.makeText(this, "HELP options is selected", Toast.LENGTH_SHORT).show()
+        }
+
+        if (genericFragment != null){
+            fragmentManager.beginTransaction().replace(R.id.principal_container, genericFragment).commit()
+        }
+
+        title = menuItem.title
     }
 
     private fun addToolBar() {
