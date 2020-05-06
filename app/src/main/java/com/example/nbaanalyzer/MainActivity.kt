@@ -11,7 +11,9 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.nbaanalyzer.ui.help.HelpFragment
 import com.example.nbaanalyzer.ui.my_team.MyTeamFragment
+import com.example.nbaanalyzer.ui.teams.TeamsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,8 +54,8 @@ class MainActivity : AppCompatActivity() {
 
         when (menuItem.itemId){
             R.id.nav_item_my_team -> genericFragment = MyTeamFragment()
-            R.id.nav_item_teams -> Toast.makeText(this, "TEAMS options is selected", Toast.LENGTH_SHORT).show()
-            R.id.nav_item_help -> Toast.makeText(this, "HELP options is selected", Toast.LENGTH_SHORT).show()
+            R.id.nav_item_teams -> genericFragment = TeamsFragment()
+            R.id.nav_item_help -> genericFragment = HelpFragment()
         }
 
         if (genericFragment != null){
@@ -74,7 +76,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.nav_menu, menu)
         return true
     }
 
