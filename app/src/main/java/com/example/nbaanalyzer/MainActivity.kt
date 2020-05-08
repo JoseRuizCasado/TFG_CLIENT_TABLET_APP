@@ -1,9 +1,10 @@
 package com.example.nbaanalyzer
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +14,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.example.nbaanalyzer.ui.help.HelpFragment
 import com.example.nbaanalyzer.ui.my_team.MyTeamFragment
+import com.example.nbaanalyzer.ui.select_team.SelectYourTeamActivity
 import com.example.nbaanalyzer.ui.teams.TeamsFragment
 
 class MainActivity : AppCompatActivity() {
@@ -21,21 +23,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+        // Load my team id
+        val selectedTeamId= applicationContext.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1)
+        Toast.makeText(this, "Team id: $selectedTeamId", Toast.LENGTH_SHORT).show()
+        if (selectedTeamId == -1){
+            val intent = Intent(this, SelectYourTeamActivity::class.java)
+            startActivity(intent)
+        }else{
+            setContentView(R.layout.activity_main)
 
-        // Create the app toolbar
-        addToolBar()
+            // Create the app toolbar
+            addToolBar()
 
-        // Prepare NavigationView to select item
-        val navigationView = findViewById<NavigationView>(R.id.nav_view)
-        if(navigationView != null){
-            setUpDrawer(navigationView)
-            // Item selection by default
-            itemSelection(navigationView.menu.getItem(0))
+            // Prepare NavigationView to select item
+            val navigationView = findViewById<NavigationView>(R.id.nav_view)
+            if(navigationView != null){
+                setUpDrawer(navigationView)
+                // Item selection by default
+                itemSelection(navigationView.menu.getItem(0))
+            }
+
+            drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         }
 
-        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
     }
 

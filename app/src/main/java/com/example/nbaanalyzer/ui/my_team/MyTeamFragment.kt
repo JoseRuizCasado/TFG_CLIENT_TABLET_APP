@@ -59,7 +59,7 @@ class MyTeamFragment : Fragment() {
 
     private fun insertTabs(container: ViewGroup?) {
         val fatherView = container!!.parent as View
-        appBar = fatherView.findViewById<View>(R.id.app_bar_main) as AppBarLayout
+        appBar = fatherView.findViewById(R.id.app_bar_main)
         tabLayout = TabLayout(activity)
         tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"))
         appBar.addView(tabLayout)
