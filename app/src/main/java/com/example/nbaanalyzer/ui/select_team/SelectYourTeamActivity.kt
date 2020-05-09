@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.activity_select_your_team.*
 
 class SelectYourTeamActivity : AppCompatActivity() {
 
-    private lateinit var tabLayout: TabLayout
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -4,13 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.nbaanalyzer.models.Team
-import com.example.nbaanalyzer.ui.select_team.tabs.TeamsEasternConferenceFragment
-import kotlinx.android.synthetic.main.item_select_your_team_list.view.*
-import kotlin.properties.Delegates
+import kotlinx.android.synthetic.main.item_teams_list.view.*
 
 
 /*
@@ -37,7 +34,7 @@ class TeamSelectionAdapter(private val teamsList: ArrayList<Team>, private val l
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
         i: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.item_select_your_team_list, viewGroup, false))
+        ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.item_teams_list, viewGroup, false))
 
 
     override fun onBindViewHolder(

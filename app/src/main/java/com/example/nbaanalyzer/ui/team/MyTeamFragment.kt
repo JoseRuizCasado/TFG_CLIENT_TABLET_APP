@@ -1,4 +1,4 @@
-package com.example.nbaanalyzer.ui.my_team
+package com.example.nbaanalyzer.ui.team
 
 import android.content.Context
 import android.graphics.Color
@@ -14,8 +14,8 @@ import com.example.nbaanalyzer.MainActivity
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
 import com.example.nbaanalyzer.Utils
-import com.example.nbaanalyzer.ui.my_team.tabs.BoxscoreFragment
-import com.example.nbaanalyzer.ui.my_team.tabs.TeamPreviewFragment
+import com.example.nbaanalyzer.ui.team.tabs.BoxscoreFragment
+import com.example.nbaanalyzer.ui.team.tabs.TeamPreviewFragment
 
 
 /**

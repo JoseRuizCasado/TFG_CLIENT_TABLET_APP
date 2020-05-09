@@ -1,5 +1,5 @@
 package com.example.nbaanalyzer
-
+// TODO: change package structure, add tabs package to use the same fragment in different activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.example.nbaanalyzer.ui.help.HelpFragment
-import com.example.nbaanalyzer.ui.my_team.MyTeamFragment
+import com.example.nbaanalyzer.ui.team.MyTeamFragment
 import com.example.nbaanalyzer.ui.select_team.SelectYourTeamActivity
 import com.example.nbaanalyzer.ui.teams.TeamsFragment
 
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 itemSelection(navigationView.menu.getItem(0))
             }
 
-            drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+            drawerLayout = findViewById(R.id.drawer_layout)
         }
 
 

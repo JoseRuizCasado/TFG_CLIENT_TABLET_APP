@@ -9,12 +9,9 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.nbaanalyzer.MainActivity
 
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
-import com.example.nbaanalyzer.ui.my_team.tabs.BoxscoreFragment
-import com.example.nbaanalyzer.ui.my_team.tabs.TeamPreviewFragment
 import com.example.nbaanalyzer.ui.teams.tabs.TeamsEasternConferenceFragment
 import com.example.nbaanalyzer.ui.teams.tabs.TeamsWesternConferenceFragment
 
@@ -33,6 +30,7 @@ class TeamsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_teams, container, false)
+
 
 
         // Create tabs in toolbar

@@ -30,8 +30,8 @@ class TeamsEasternConferenceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_select_your_team_eastern, container, false)
-        recycler = view.findViewById(R.id.select_your_tem_easter_recycler)
+        val view = inflater.inflate(R.layout.fragment_teams_list, container, false)
+        recycler = view.findViewById(R.id.teams_list)
 
         teamSelectionAdapter = TeamSelectionAdapter(utils.easternTeams){
             Toast.makeText(activity, "${it.teamName} pressed, with id: ${it.teamId}", Toast.LENGTH_SHORT).show()
