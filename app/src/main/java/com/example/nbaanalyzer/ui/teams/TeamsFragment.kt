@@ -1,5 +1,6 @@
 package com.example.nbaanalyzer.ui.teams
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -30,9 +31,7 @@ class TeamsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_teams, container, false)
-
-
-
+        appBar = (container!!.parent as View).findViewById(R.id.app_bar_main)
         // Create tabs in toolbar
         if (savedInstanceState == null){
             insertTabs(container)
@@ -52,7 +51,7 @@ class TeamsFragment : Fragment() {
             TabsAdapter(fragmentManager)
         tabsAdapter.addFragment(TeamsEasternConferenceFragment(), getString(R.string.tab_eastern))
         tabsAdapter.addFragment(TeamsWesternConferenceFragment(), getString(R.string.tab_western))
-        viewPager?.adapter = tabsAdapter
+        viewPager!!.adapter = tabsAdapter
     }
 
     private fun insertTabs(container: ViewGroup?) {
@@ -66,6 +65,7 @@ class TeamsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         appBar.removeView(tabLayout)
+        viewPager.removeAllViews()
     }
 
 }

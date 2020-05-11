@@ -7,4 +7,7 @@
     <string name="tab_boxscore">Boxscore</string>
     <string name="tab_western">Western Conference</string>
     <string name="tab_eastern">Eastern Conference</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

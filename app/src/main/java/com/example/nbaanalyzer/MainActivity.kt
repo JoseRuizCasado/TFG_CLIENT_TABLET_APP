@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Load my team id
-        val selectedTeamId= applicationContext.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1)
+        val sharedPreferences = applicationContext.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        val selectedTeamId= sharedPreferences.getInt("teamId", -1)
         Toast.makeText(this, "Team id: $selectedTeamId", Toast.LENGTH_SHORT).show()
         if (selectedTeamId == -1){
             val intent = Intent(this, SelectYourTeamActivity::class.java)
@@ -41,7 +42,9 @@ class MainActivity : AppCompatActivity() {
             if(navigationView != null){
                 setUpDrawer(navigationView)
                 // Item selection by default
-                itemSelection(navigationView.menu.getItem(0))
+                val menuOption = sharedPreferences.getInt("menuOption", 0)
+                itemSelection(navigationView.menu.getItem(menuOption))
+                sharedPreferences.edit().remove("menuOption").apply()
             }
 
             drawerLayout = findViewById(R.id.drawer_layout)
@@ -73,6 +76,8 @@ class MainActivity : AppCompatActivity() {
             fragmentManager.beginTransaction().replace(R.id.principal_container, genericFragment).commit()
         }
 
+        menuItem.isCheckable = true
+        menuItem.isChecked = true
         title = menuItem.title
     }
 
@@ -99,6 +104,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        applicationContext.getSharedPreferences("MyPref", Context.MODE_PRIVATE).edit().remove("menuOption").apply()
     }
 
 }

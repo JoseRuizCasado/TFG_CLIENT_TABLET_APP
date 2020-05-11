@@ -23,7 +23,6 @@ class SelectYourTeamActivity : AppCompatActivity() {
         select_team_view_pager.adapter = fragmentAdapter
         select_your_team_tabs.setupWithViewPager(select_team_view_pager)
 
-
     }
 
 }
