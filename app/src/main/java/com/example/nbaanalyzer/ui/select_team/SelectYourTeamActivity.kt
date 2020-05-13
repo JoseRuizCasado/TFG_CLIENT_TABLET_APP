@@ -1,8 +1,8 @@
 package com.example.nbaanalyzer.ui.select_team
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
 import com.example.nbaanalyzer.ui.select_team.tabs.TeamsEasternConferenceFragment
