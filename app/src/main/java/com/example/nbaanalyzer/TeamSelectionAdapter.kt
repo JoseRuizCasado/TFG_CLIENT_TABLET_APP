@@ -17,11 +17,12 @@ class TeamSelectionAdapter(private val teamsList: ArrayList<Team>, private val l
     : RecyclerView.Adapter<TeamSelectionAdapter.ViewHolder?>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        var teamName: TextView = v.itemTeamName
-        var teamIcon: ImageView = v.itemIcon
+        private var teamName: TextView = v.itemTeamName
+        private var teamIcon: ImageView = v.itemIcon
 
         fun bind(team: Team, listener: (Team) -> Unit) = with(itemView) {
             teamName.text = team.teamName
+            teamIcon.setImageResource(team.teamIconDrawable)
             setOnClickListener { listener(team) }
         }
 
