@@ -1,10 +1,14 @@
 package com.example.nbaanalyzer
 
+import com.example.nbaanalyzer.models.Player
 import com.example.nbaanalyzer.models.Team
 
 class Utils{
+
     var easternTeams: ArrayList<Team> = ArrayList()
     var westernTeams: ArrayList<Team> = ArrayList()
+    var playersStatistics: ArrayList<Player> = ArrayList()
+
     init {
         easternTeams.add(Team(1, R.drawable.ic_boston_celtics, "Boston Celtics"))
         easternTeams.add(Team(6, R.drawable.ic_chicago_bulls, "Chicago Bulls"))
@@ -36,6 +40,29 @@ class Utils{
         westernTeams.add(Team(28, R.drawable.ic_san_antonio_spurs, "San Antonio Spurs"))
         westernTeams.add(Team(29, R.drawable.ic_utah_jazz_logo, "Utah Jazz"))
         westernTeams.add(Team(30, R.drawable.ic_sacramento_kings, "Sacramento Kings"))
+
+        playersStatistics.add(Player(1, "Michael Jordan", "Shooting Guard", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(2, "Scottie Pippen", "Small Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(3, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(4, "Giannis Antetokounmpo", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(5, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(6, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(7, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(8, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(9, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(10, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(11, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(12, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(13, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(14, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(15, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(16, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(17, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(18, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(19, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(20, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(21, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
+        playersStatistics.add(Player(22, "Dennis Rodman", "Power Forward", 34.3, 12.3, 15.52, .42, 3.2, 5.2, .382, 8.21, 10.43, .402, .253, 10.3))
 
     }
 

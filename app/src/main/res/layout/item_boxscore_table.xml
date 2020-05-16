@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/boxscore_table_header_cell_background"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/item_boxscore_player_id"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="Player id"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_player_name"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="Player Name"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_player_position"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="Position"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_mpg"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="MPG"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_fgm"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="FGM"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_fga"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="FGA"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_fgp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="FG%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_3pm"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="3PM"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_3pa"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="3PA"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_3pp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="3P%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_2pm"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="2PM"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_2pa"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="2PA"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_2pp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="2P%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_efficient_field_goals"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="eFG%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_ftm"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="FTM"
+        android:textSize="20sp" />
+
+</LinearLayout>

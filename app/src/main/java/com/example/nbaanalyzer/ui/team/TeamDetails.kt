@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
 import com.example.nbaanalyzer.Utils
-import com.example.nbaanalyzer.ui.team.tabs.BoxscoreFragment
+import com.example.nbaanalyzer.ui.team.tabs.boxscore.BoxscoreFragment
 import com.example.nbaanalyzer.ui.team.tabs.InformFragment
 import com.example.nbaanalyzer.ui.team.tabs.TeamPreviewFragment
 import kotlinx.android.synthetic.main.activity_team_details.*
