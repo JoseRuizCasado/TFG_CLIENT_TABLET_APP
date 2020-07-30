@@ -28,6 +28,7 @@ class BoxscoreFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_boxscore, container, false)
 
+        // TODO: Change table header to use a vertical layout with recycler view
         val recyclerView = view.findViewById<RecyclerView>(R.id.boxscore_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = TableViewAdapter(utils.playersStatistics){
