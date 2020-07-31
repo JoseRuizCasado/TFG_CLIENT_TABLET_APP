@@ -1,5 +1,6 @@
 package com.example.nbaanalyzer.ui.team.tabs.boxscore
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.Utils
+import com.example.nbaanalyzer.ui.player.PlayerActivity
 
 /**
  * A simple [Fragment] subclass.
@@ -33,7 +35,11 @@ class BoxscoreFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = TableViewAdapter(utils.playersStatistics){
             Toast.makeText(activity, "${it.name} pressed, with id: ${it.id}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, PlayerActivity::class.java)
+            intent.putExtra("name", it.name)
+            startActivity(intent)
         }
+
 
         return view
     }
