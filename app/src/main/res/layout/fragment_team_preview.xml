@@ -38,5 +38,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team_preview_radar_chart" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Players with highest USG%"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/team_preview_bar_chart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_preview_radar_chart" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

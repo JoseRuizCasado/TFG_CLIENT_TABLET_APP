@@ -1,25 +1,20 @@
 package com.example.nbaanalyzer.ui.team.tabs
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.RadarChart
-import com.github.mikephil.charting.components.MarkerView
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.utils.MPPointF
-import java.text.DecimalFormat
 
 
 /**
@@ -70,19 +65,13 @@ class TeamPreviewFragment : Fragment() {
 
         val barChart = fragmentLayout.findViewById<BarChart>(R.id.team_preview_bar_chart)
 
+        barChart.legend.isEnabled = false
+        barChart.description.isEnabled = false
+
         barChart.setDrawBarShadow(false)
         barChart.setDrawValueAboveBar(true)
 
-        barChart.description.isEnabled = false
         barChart.setPinchZoom(false)
-        barChart.legend.isEnabled = false
-
-        val barEntries = ArrayList<BarEntry>()
-        barEntries.add(BarEntry(35.45f, 0f))
-        barEntries.add(BarEntry(23.39f, 1f))
-        barEntries.add(BarEntry(15.21f, 2f))
-        barEntries.add(BarEntry(13.12f, 3f))
-        barEntries.add(BarEntry(12.45f, 4f))
 
         val players = ArrayList<String>()
         players.add("Player 1")
@@ -90,6 +79,29 @@ class TeamPreviewFragment : Fragment() {
         players.add("Player 3")
         players.add("Player 4")
         players.add("Player 5")
+
+        val barChartXAxis = barChart.xAxis
+        barChartXAxis.position = XAxis.XAxisPosition.BOTTOM
+        barChartXAxis.setDrawGridLines(false)
+        barChartXAxis.granularity = 1f
+        barChartXAxis.valueFormatter = IndexAxisValueFormatter(players)
+
+        val barChartLeftAxis = barChart.axisLeft
+        barChartLeftAxis.setDrawGridLines(false)
+        barChartLeftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+        barChartLeftAxis.axisMinimum = 0f
+        barChartLeftAxis.spaceTop = 15f
+
+        barChart.axisRight.isEnabled = false
+
+        barChart.animateY(1500)
+
+        val barEntries = ArrayList<BarEntry>()
+        barEntries.add(BarEntry(0f, 35.45f))
+        barEntries.add(BarEntry(1f, 23.39f))
+        barEntries.add(BarEntry(2f, 15.21f))
+        barEntries.add(BarEntry(3f, 13.12f))
+        barEntries.add(BarEntry(4f, 12.45f))
 
         val barDataSet = BarDataSet(barEntries, "Player Usage")
         val barData = BarData(barDataSet)
