@@ -1,7 +1,12 @@
 package com.example.nbaanalyzer.ui.team.tabs
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +14,16 @@ import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.charts.RadarChart
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.utils.ColorTemplate
 
 
 /**
@@ -106,6 +115,58 @@ class TeamPreviewFragment : Fragment() {
         val barDataSet = BarDataSet(barEntries, "Player Usage")
         val barData = BarData(barDataSet)
         barChart.data = barData
+
+        val pieChart = fragmentLayout.findViewById<PieChart>(R.id.team_preview_pie_chart)
+        pieChart.setUsePercentValues(true)
+        pieChart.description.isEnabled = false
+        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+
+        pieChart.dragDecelerationFrictionCoef = 0.95f
+
+        pieChart.centerText = SpannableString("Team score distribution by position")
+
+        pieChart.isDrawHoleEnabled = true
+        pieChart.setHoleColor(Color.WHITE)
+
+        pieChart.setTransparentCircleColor(Color.WHITE)
+        pieChart.setTransparentCircleAlpha(110)
+
+        pieChart.holeRadius = 58f
+        pieChart.transparentCircleRadius = 61f
+
+        pieChart.setDrawCenterText(true)
+
+        pieChart.rotationAngle = 0f
+        pieChart.isRotationEnabled = true
+        pieChart.isHighlightPerTapEnabled = true
+
+        pieChart.animateY(1400, Easing.EaseInOutQuad)
+
+        pieChart.legend.isEnabled = false
+
+        pieChart.setEntryLabelColor(Color.WHITE)
+        pieChart.setEntryLabelTextSize(12f)
+
+        val pieEntriesList = ArrayList<PieEntry>()
+        pieEntriesList.add(PieEntry(1098f, "PG"))
+        pieEntriesList.add(PieEntry(529f, "SG"))
+        pieEntriesList.add(PieEntry(752f, "SF"))
+        pieEntriesList.add(PieEntry(1030f, "PG"))
+        pieEntriesList.add(PieEntry(932f, "C"))
+
+        val pieDataSet = PieDataSet(pieEntriesList, "Score per position")
+
+        val colors =  ColorTemplate.MATERIAL_COLORS.toMutableList()
+        colors.add(Color.rgb(255, 167, 38))
+        pieDataSet.colors = colors
+
+        val pieData = PieData(pieDataSet)
+        pieData.setValueFormatter(PercentFormatter(pieChart))
+        pieData.setValueTextSize(11f)
+        pieData.setValueTextColor(Color.WHITE)
+
+        pieChart.data = pieData
+        pieChart.highlightValues(null)
 
         return fragmentLayout
     }
