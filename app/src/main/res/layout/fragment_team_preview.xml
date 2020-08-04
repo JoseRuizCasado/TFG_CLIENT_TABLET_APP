@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="172dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="IMPORTANT ADVANDCED STATS"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="120dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="TEAM SCORE DISTRIBUTION BY POSITION"
         android:textColor="@color/colorPrimary"
@@ -37,7 +37,7 @@
         android:id="@+id/team_preview_radar_chart"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="230dp"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -46,8 +46,8 @@
         android:id="@+id/team_preview_bar_chart"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team_preview_radar_chart" />
 
@@ -55,22 +55,32 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
+        android:layout_marginStart="304dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Players with highest USG%"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/team_preview_bar_chart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team_preview_radar_chart" />
+        app:layout_constraintTop_toBottomOf="@+id/team_preview_radar_chart"
+        app:layout_constraintVertical_bias="0.31" />
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/team_preview_pie_chart"
         android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="230dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/team_preview_stacked_bar_chart"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="180dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_preview_pie_chart" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

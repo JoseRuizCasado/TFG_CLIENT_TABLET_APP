@@ -1,12 +1,9 @@
 package com.example.nbaanalyzer.ui.team.tabs
 
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.text.style.RelativeSizeSpan
-import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +19,7 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.formatter.StackedValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 
@@ -123,7 +121,10 @@ class TeamPreviewFragment : Fragment() {
 
         pieChart.dragDecelerationFrictionCoef = 0.95f
 
-        pieChart.centerText = SpannableString("Team score distribution by position")
+        val pieCenterText = SpannableString("Team score distribution \n by position")
+        pieCenterText.setSpan(ForegroundColorSpan(activity!!.resources.getColor(R.color.colorPrimary)),
+            0, pieCenterText.length, 0)
+        pieChart.centerText = pieCenterText
 
         pieChart.isDrawHoleEnabled = true
         pieChart.setHoleColor(Color.WHITE)
@@ -167,6 +168,56 @@ class TeamPreviewFragment : Fragment() {
 
         pieChart.data = pieData
         pieChart.highlightValues(null)
+
+        val stackedBarChart = fragmentLayout.findViewById<BarChart>(R.id.team_preview_stacked_bar_chart)
+
+        stackedBarChart.description.isEnabled = false
+
+        stackedBarChart.setPinchZoom(false)
+        stackedBarChart.setDrawGridBackground(false)
+        stackedBarChart.setDrawBarShadow(false)
+
+        stackedBarChart.setDrawValueAboveBar(false)
+        stackedBarChart.isHighlightFullBarEnabled = false
+
+        val stackedLeftAxis = stackedBarChart.axisLeft
+        stackedLeftAxis.axisMinimum = 0f
+        stackedLeftAxis.setDrawGridLines(false)
+        stackedBarChart.axisRight.isEnabled = false
+
+        val stackedXLabels = stackedBarChart.xAxis
+        stackedXLabels.position = XAxis.XAxisPosition.BOTTOM
+        stackedXLabels.setDrawGridLines(false)
+
+        val positions = ArrayList<String>()
+        positions.add("PG")
+        positions.add("SG")
+        positions.add("SF")
+        positions.add("PF")
+        positions.add("C")
+        stackedXLabels.valueFormatter = IndexAxisValueFormatter(positions)
+        stackedXLabels.labelCount = 5
+
+        val stackedBarEntries = ArrayList<BarEntry>()
+        stackedBarEntries.add(BarEntry(0f, floatArrayOf(1000f, 98f)))
+        stackedBarEntries.add(BarEntry(1f, floatArrayOf(264.5f, 264.5f)))
+        stackedBarEntries.add(BarEntry(2f, floatArrayOf(652f, 100f)))
+        stackedBarEntries.add(BarEntry(3f, floatArrayOf(230f, 800f)))
+        stackedBarEntries.add(BarEntry(4f, floatArrayOf(890f, 42f)))
+
+        val stackedBarDataSet = BarDataSet(stackedBarEntries, "")
+        stackedBarDataSet.stackLabels = (arrayOf("Starters", "Subs"))
+        stackedBarDataSet.colors = listOf(Color.rgb(23, 64, 139), Color.rgb(201, 8, 42))
+        stackedBarDataSet.setDrawIcons(false)
+
+        val stackedBarData = BarData(stackedBarDataSet)
+        stackedBarData.setValueFormatter(StackedValueFormatter(false, "", 1))
+        stackedBarChart.data = stackedBarData
+
+        stackedBarChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.CENTER;
+        stackedBarChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT;
+        stackedBarChart.legend.orientation = Legend.LegendOrientation.VERTICAL;
+        stackedBarChart.legend.setDrawInside(false);
 
         return fragmentLayout
     }
