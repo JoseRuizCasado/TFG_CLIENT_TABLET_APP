@@ -111,6 +111,7 @@ class TeamPreviewFragment : Fragment() {
         barEntries.add(BarEntry(4f, 12.45f))
 
         val barDataSet = BarDataSet(barEntries, "Player Usage")
+        barDataSet.colors = listOf(Color.rgb(144, 202, 249))
         val barData = BarData(barDataSet)
         barChart.data = barData
 
@@ -207,7 +208,7 @@ class TeamPreviewFragment : Fragment() {
 
         val stackedBarDataSet = BarDataSet(stackedBarEntries, "")
         stackedBarDataSet.stackLabels = (arrayOf("Starters", "Subs"))
-        stackedBarDataSet.colors = listOf(Color.rgb(23, 64, 139), Color.rgb(201, 8, 42))
+        stackedBarDataSet.colors = listOf(Color.rgb(144, 202, 249), Color.rgb(229, 115, 115))
         stackedBarDataSet.setDrawIcons(false)
 
         val stackedBarData = BarData(stackedBarDataSet)
