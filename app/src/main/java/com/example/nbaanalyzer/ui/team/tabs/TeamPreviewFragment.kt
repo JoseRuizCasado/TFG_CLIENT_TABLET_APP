@@ -173,6 +173,7 @@ class TeamPreviewFragment : Fragment() {
         val stackedBarChart = fragmentLayout.findViewById<BarChart>(R.id.team_preview_stacked_bar_chart)
 
         stackedBarChart.description.isEnabled = false
+        stackedBarChart.animateY(1500)
 
         stackedBarChart.setPinchZoom(false)
         stackedBarChart.setDrawGridBackground(false)
@@ -208,6 +209,7 @@ class TeamPreviewFragment : Fragment() {
 
         val stackedBarDataSet = BarDataSet(stackedBarEntries, "")
         stackedBarDataSet.stackLabels = (arrayOf("Starters", "Subs"))
+        stackedBarDataSet.valueTextColor = Color.WHITE
         stackedBarDataSet.colors = listOf(Color.rgb(144, 202, 249), Color.rgb(229, 115, 115))
         stackedBarDataSet.setDrawIcons(false)
 
@@ -215,10 +217,10 @@ class TeamPreviewFragment : Fragment() {
         stackedBarData.setValueFormatter(StackedValueFormatter(false, "", 1))
         stackedBarChart.data = stackedBarData
 
-        stackedBarChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.CENTER;
-        stackedBarChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT;
-        stackedBarChart.legend.orientation = Legend.LegendOrientation.VERTICAL;
-        stackedBarChart.legend.setDrawInside(false);
+        stackedBarChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.CENTER
+        stackedBarChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+        stackedBarChart.legend.orientation = Legend.LegendOrientation.VERTICAL
+        stackedBarChart.legend.setDrawInside(false)
 
         return fragmentLayout
     }
