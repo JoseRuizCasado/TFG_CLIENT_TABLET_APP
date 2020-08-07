@@ -26,7 +26,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player_preview_minutes2" />
+        app:layout_constraintTop_toBottomOf="@+id/player_preview_points" />
 
     <TextView
         android:id="@+id/textView4"
@@ -71,104 +71,104 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
+        android:layout_marginStart="444dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Offensive Rebounds"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/player_preview_position"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
+        android:layout_marginStart="812dp"
         android:layout_marginTop="68dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="FG%"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/player_preview_oreb"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
+        android:layout_marginStart="812dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="3PT%"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/player_preview_dreb"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
+        android:layout_marginStart="812dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="3PT Rate"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/player_preview_blk"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="812dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="FT%"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/player_preview_tov"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="134dp"
+        android:layout_marginStart="444dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Defensive Rebounds"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/player_preview_games"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="444dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Blocks"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/player_preview_minutes"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="444dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Turnovers"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/player_preview_minutes2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
@@ -308,20 +308,20 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="23.4"
+        android:text="23.42"
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/player_preview_games" />
 
     <TextView
-        android:id="@+id/player_preview_minutes2"
+        android:id="@+id/player_preview_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="15.6"
+        android:text="15.63"
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView11"
@@ -370,7 +370,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="DEFENSIVE EFFICIENCY BY CLUSTER"
         android:textColor="@color/colorPrimary"
@@ -378,7 +378,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.726"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/player_preview_ft" />
 
     <com.github.mikephil.charting.charts.CombinedChart
         android:id="@+id/player_preview_combined_chart"
