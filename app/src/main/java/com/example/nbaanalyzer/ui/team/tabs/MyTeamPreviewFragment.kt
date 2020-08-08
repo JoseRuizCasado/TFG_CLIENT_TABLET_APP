@@ -28,7 +28,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 /**
  * Team Preview tab [Fragment] subclass.
  */
-class TeamPreviewFragment : Fragment() {
+class MyTeamPreviewFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +36,8 @@ class TeamPreviewFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val fragmentLayout = inflater.inflate(R.layout.fragment_team_preview, container, false)
+
+        val team = (activity as MainActivity)
 
         val radarChart = fragmentLayout.findViewById<RadarChart>(R.id.team_preview_radar_chart)
 

@@ -14,8 +14,9 @@ import com.example.nbaanalyzer.MainActivity
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
 import com.example.nbaanalyzer.Utils
+import com.example.nbaanalyzer.ui.team.tabs.MyTeamPreviewFragment
 import com.example.nbaanalyzer.ui.team.tabs.boxscore.BoxscoreFragment
-import com.example.nbaanalyzer.ui.team.tabs.TeamPreviewFragment
+import com.example.nbaanalyzer.ui.team.tabs.boxscore.MyBoxscoreFragment
 
 
 /**
@@ -55,8 +56,8 @@ class MyTeamFragment : Fragment() {
     private fun populateViewPager(viewPager: ViewPager?) {
         val tabsAdapter: TabsAdapter =
             TabsAdapter(fragmentManager)
-        tabsAdapter.addFragment(TeamPreviewFragment(), getString(R.string.tab_team_preview))
-        tabsAdapter.addFragment(BoxscoreFragment(), getString(R.string.tab_boxscore))
+        tabsAdapter.addFragment(MyTeamPreviewFragment(), getString(R.string.tab_team_preview))
+        tabsAdapter.addFragment(MyBoxscoreFragment(), getString(R.string.tab_boxscore))
         viewPager?.adapter = tabsAdapter
     }
 

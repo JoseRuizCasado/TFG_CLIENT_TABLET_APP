@@ -1,5 +1,5 @@
 package com.example.nbaanalyzer
-// TODO: change package structure, add tabs package to use the same fragment in different activities
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,9 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.nbaanalyzer.api.RestAPI
+import com.example.nbaanalyzer.api.responses.TeamDataResponse
+import com.example.nbaanalyzer.api.services.TeamAPIService
 import com.example.nbaanalyzer.ui.help.HelpFragment
 import com.example.nbaanalyzer.ui.team.MyTeamFragment
 import com.example.nbaanalyzer.ui.select_team.SelectYourTeamActivity
@@ -20,6 +23,8 @@ import com.example.nbaanalyzer.ui.teams.TeamsFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
+
+//    private lateinit var team: TeamDataResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +53,37 @@ class MainActivity : AppCompatActivity() {
             }
 
             drawerLayout = findViewById(R.id.drawer_layout)
+
+            // Get Team data  from API
+//            val api = RestAPI()
+//            val response = api.getTeamStats(selectedTeamId).execute()
+//            team = if (response.isSuccessful){
+//                response.body()!!.team
+//            }else {
+//                TeamDataResponse(-1, "", "", "", "",
+//                            "", "", "", 0,
+//                    0, 0, 0, 0,
+//                    0, 0, 0,
+//                    0, 0,
+//                    0, 0,
+//                    0, 0,
+//                    0, 0,
+//                    0, 0, 0,
+//                    0, 0, 0, 0,
+//                    0, 0, 0,
+//                    0, 0, 0, 0,
+//                    0, 0, 0, 0,
+//                    0, 0f, 0f,
+//                    0f, 0f,
+//                    0f, 0f,
+//                    0f, 0f,
+//                    0f, 0f, 0f,
+//                    0f, 0f, 0f,
+//                    0f, 0f, 0f,
+//                    0f, 0f, 0f, 0f, 0f, 0f, 0f,
+//                    0f, 0f, 0f, 0f, 0f)
+//            }
+
         }
 
 
