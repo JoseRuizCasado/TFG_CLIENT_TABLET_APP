@@ -17,9 +17,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
-import kotlinx.android.synthetic.main.fragment_player_preview.*
 import java.text.DecimalFormat
-import kotlin.math.abs
 import kotlin.random.Random
 
 /**
@@ -36,17 +34,17 @@ class PlayerPreviewFragment : Fragment() {
 
         val playerActivity = activity as PlayerActivity
         fragmentLayout.findViewById<TextView>(R.id.player_preview_position).text = playerActivity.playerPosition
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_play_style).text = "Cluster 2"
         fragmentLayout.findViewById<TextView>(R.id.player_preview_games).text = playerActivity.playedGames.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_minutes).text = playerActivity.playedMinutes.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_points).text = playerActivity.scoredPoints.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_oreb).text = playerActivity.offensiveRebounds.toString()
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_oreb).text =playerActivity.offensiveRebounds.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_dreb).text =playerActivity.defensiveRebounds.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_blk).text =playerActivity.blocks.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_tov).text =playerActivity.turnovers.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_fg).text =playerActivity.fgpp.toString()
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_fg).text =playerActivity.fgp.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_3pt).text =playerActivity.threepp.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_3pt_rate).text =playerActivity.threepr.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_ft).text =playerActivity.ftp.toString()
 
         val radarChart = fragmentLayout.findViewById<RadarChart>(R.id.player_preview_radar_chart)
 

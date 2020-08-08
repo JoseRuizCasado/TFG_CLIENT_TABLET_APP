@@ -1,16 +1,13 @@
 package com.example.nbaanalyzer.ui.player
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.MenuItem
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
 import com.example.nbaanalyzer.ui.player.tabs.PlayerPreviewFragment
 import com.example.nbaanalyzer.ui.player.tabs.PlayerShotCharts
 import kotlinx.android.synthetic.main.activity_player.*
-import java.text.FieldPosition
 import kotlin.properties.Delegates
 
 class PlayerActivity : AppCompatActivity() {
@@ -24,7 +21,7 @@ class PlayerActivity : AppCompatActivity() {
     var defensiveRebounds by Delegates.notNull<Double>()
     var blocks by Delegates.notNull<Double>()
     var turnovers by Delegates.notNull<Double>()
-    var fgpp by Delegates.notNull<Double>()
+    var fgp by Delegates.notNull<Double>()
     var threepp by Delegates.notNull<Double>()
     var threepr by Delegates.notNull<Double>()
     var ftp by Delegates.notNull<Double>()
@@ -45,7 +42,7 @@ class PlayerActivity : AppCompatActivity() {
         defensiveRebounds = intent.getDoubleExtra("defensive_rebounds", 0.0)
         blocks = intent.getDoubleExtra("blocks", 0.0)
         turnovers = intent.getDoubleExtra("turnovers", 0.0)
-        fgpp = intent.getDoubleExtra("fg%", 0.0)
+        fgp = intent.getDoubleExtra("fg%", 0.0)
         threepp = intent.getDoubleExtra("3pt%", 0.0)
         threepr = intent.getDoubleExtra("3pt_rate", 0.0)
         ftp = intent.getDoubleExtra("ft%", 0.0)

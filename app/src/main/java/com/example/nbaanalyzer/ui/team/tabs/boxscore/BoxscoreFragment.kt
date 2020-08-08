@@ -41,7 +41,7 @@ class BoxscoreFragment : Fragment() {
             intent.putExtra("minutes", it.mpg)
             intent.putExtra("points", it.ppg)
             intent.putExtra("offensive_rebounds", it.or)
-            intent.putExtra("defensive_rebounds", it.or)
+            intent.putExtra("defensive_rebounds", it.dr)
             intent.putExtra("blocks", it.blk)
             intent.putExtra("turnovers", it.tov)
             intent.putExtra("fg%", it.fgp)
