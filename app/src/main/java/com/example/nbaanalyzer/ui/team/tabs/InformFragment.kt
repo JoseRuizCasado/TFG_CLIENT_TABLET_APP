@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.Utils
-import com.example.nbaanalyzer.ui.team.TeamDetails
+import com.example.nbaanalyzer.ui.team.TeamDetailsActivity
 import com.github.mikephil.charting.charts.HorizontalBarChart
-import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
@@ -39,7 +38,7 @@ class InformFragment : Fragment() {
         val informLayOut = inflater.inflate(R.layout.fragment_inform, container, false)
 
         val teamId = activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1)
-        val selectedTeam = (activity as TeamDetails).selectedTeam
+        val selectedTeam = (activity as TeamDetailsActivity).selectedTeam
 
         informLayOut.informTextLocal.text = utils.getTeamById(teamId)
         informLayOut.informTextVisitor.text = utils.getTeamById(selectedTeam)

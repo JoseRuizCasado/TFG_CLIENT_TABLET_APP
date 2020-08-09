@@ -15,7 +15,7 @@
         <activity
             android:name=".ui.player.PlayerActivity"/>
         <activity
-            android:name=".ui.team.TeamDetails"
+            android:name=".ui.team.TeamDetailsActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="landscape" />
         <activity

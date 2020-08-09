@@ -15,8 +15,8 @@ import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
 import com.example.nbaanalyzer.Utils
 import com.example.nbaanalyzer.ui.team.tabs.MyTeamPreviewFragment
-import com.example.nbaanalyzer.ui.team.tabs.boxscore.BoxscoreFragment
 import com.example.nbaanalyzer.ui.team.tabs.boxscore.MyBoxscoreFragment
+import kotlin.properties.Delegates
 
 
 /**
@@ -28,6 +28,7 @@ class MyTeamFragment : Fragment() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
     private var utils = Utils()
+    var teamID by Delegates.notNull<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +37,10 @@ class MyTeamFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_team, container, false)
 
+        teamID = activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1)
+
         // Change the toolbar title with selected team name
-        (activity as MainActivity).title = utils.getTeamById(activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1))
+        (activity as MainActivity).title = utils.getTeamById(teamID)
 
         // Create tabs in toolbar
         if (savedInstanceState == null){

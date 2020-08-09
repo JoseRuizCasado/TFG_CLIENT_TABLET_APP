@@ -12,7 +12,7 @@ import android.widget.Toast
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TeamSelectionAdapter
 import com.example.nbaanalyzer.Utils
-import com.example.nbaanalyzer.ui.team.TeamDetails
+import com.example.nbaanalyzer.ui.team.TeamDetailsActivity
 
 /**
  * A simple [Fragment] subclass.
@@ -34,7 +34,7 @@ class TeamsWesternConferenceFragment : Fragment() {
 
         teamSelectionAdapter = TeamSelectionAdapter(utils.westernTeams){
             Toast.makeText(activity, "${it.teamName} pressed, with id: ${it.teamId}", Toast.LENGTH_SHORT).show()
-            val intent = Intent(activity, TeamDetails::class.java)
+            val intent = Intent(activity, TeamDetailsActivity::class.java)
             intent.putExtra("teamId", it.teamId)
             startActivity(intent)
         }

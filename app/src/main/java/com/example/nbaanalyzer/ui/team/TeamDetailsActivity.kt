@@ -12,7 +12,7 @@ import com.example.nbaanalyzer.ui.team.tabs.TeamPreviewFragment
 import kotlinx.android.synthetic.main.activity_team_details.*
 import kotlin.properties.Delegates
 
-class TeamDetails : AppCompatActivity() {
+class TeamDetailsActivity : AppCompatActivity() {
 
     private val utils = Utils()
     var selectedTeam by Delegates.notNull<Int>()

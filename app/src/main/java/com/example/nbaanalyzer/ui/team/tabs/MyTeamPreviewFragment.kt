@@ -1,5 +1,6 @@
 package com.example.nbaanalyzer.ui.team.tabs
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableString
@@ -7,9 +8,12 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.nbaanalyzer.MainActivity
 import com.example.nbaanalyzer.R
+import com.example.nbaanalyzer.api.RestAPI
+import com.example.nbaanalyzer.api.responses.TeamDataResponse
+import com.example.nbaanalyzer.ui.team.MyTeamFragment
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
@@ -23,6 +27,8 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.formatter.StackedValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 
 /**
@@ -37,7 +43,7 @@ class MyTeamPreviewFragment : Fragment() {
         // Inflate the layout for this fragment
         val fragmentLayout = inflater.inflate(R.layout.fragment_team_preview, container, false)
 
-        val team = (activity as MainActivity)
+        getTeamByID(activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1))
 
         val radarChart = fragmentLayout.findViewById<RadarChart>(R.id.team_preview_radar_chart)
 
@@ -228,5 +234,46 @@ class MyTeamPreviewFragment : Fragment() {
         return fragmentLayout
     }
 
+    private fun initializeTeam (teamData: TeamDataResponse){
+        val team = teamData
+        Toast.makeText(context, "HOLAAAAAAAA", Toast.LENGTH_LONG).show()
+
+    }
+
+    private fun getTeamByID ( team_id: Int){
+        doAsync {
+            // Get Team data  from API
+            val api = RestAPI()
+            val response = api.getTeamStats(team_id).execute()
+            val teamData = if (response.isSuccessful){
+                response.body()!!.team
+            }else {
+                TeamDataResponse(-1, "", "", "", "",
+                    "", "", "", 0,
+                    0, 0, 0, 0,
+                    0, 0, 0,
+                    0, 0,
+                    0, 0,
+                    0, 0,
+                    0, 0,
+                    0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0f, 0f,
+                    0f, 0f,
+                    0f, 0f,
+                    0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f)
+            }
+
+            uiThread { initializeTeam(teamData) }
+        }
+    }
 
 }

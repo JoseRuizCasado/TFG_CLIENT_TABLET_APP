@@ -19,12 +19,12 @@ import com.example.nbaanalyzer.ui.help.HelpFragment
 import com.example.nbaanalyzer.ui.team.MyTeamFragment
 import com.example.nbaanalyzer.ui.select_team.SelectYourTeamActivity
 import com.example.nbaanalyzer.ui.teams.TeamsFragment
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
-
-//    private lateinit var team: TeamDataResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,35 +54,6 @@ class MainActivity : AppCompatActivity() {
 
             drawerLayout = findViewById(R.id.drawer_layout)
 
-            // Get Team data  from API
-//            val api = RestAPI()
-//            val response = api.getTeamStats(selectedTeamId).execute()
-//            team = if (response.isSuccessful){
-//                response.body()!!.team
-//            }else {
-//                TeamDataResponse(-1, "", "", "", "",
-//                            "", "", "", 0,
-//                    0, 0, 0, 0,
-//                    0, 0, 0,
-//                    0, 0,
-//                    0, 0,
-//                    0, 0,
-//                    0, 0,
-//                    0, 0, 0,
-//                    0, 0, 0, 0,
-//                    0, 0, 0,
-//                    0, 0, 0, 0,
-//                    0, 0, 0, 0,
-//                    0, 0f, 0f,
-//                    0f, 0f,
-//                    0f, 0f,
-//                    0f, 0f,
-//                    0f, 0f, 0f,
-//                    0f, 0f, 0f,
-//                    0f, 0f, 0f,
-//                    0f, 0f, 0f, 0f, 0f, 0f, 0f,
-//                    0f, 0f, 0f, 0f, 0f)
-//            }
 
         }
 

@@ -7,7 +7,7 @@ data class TeamResponse(
 )
 
 data class TeamDataResponse(
-    @field:Json(name = "team_id") val team_id: Int,
+    @field:Json(name = "teamID") val team_id: Int,
     @field:Json(name = "name") val name: String,
     @field:Json(name = "abbreviation") val abbreviation: String,
     @field:Json(name = "conference") val conference: String,
