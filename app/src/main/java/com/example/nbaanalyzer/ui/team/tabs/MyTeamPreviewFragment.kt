@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.api.RestAPI
+import com.example.nbaanalyzer.api.responses.PlayerDataResponse
 import com.example.nbaanalyzer.api.responses.TeamDataResponse
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
@@ -49,7 +50,7 @@ class MyTeamPreviewFragment : Fragment() {
 
         radarChart = fragmentLayout.findViewById(R.id.team_preview_radar_chart)
 
-        barChart = fragmentLayout.findViewById<BarChart>(R.id.team_preview_bar_chart)
+        barChart = fragmentLayout.findViewById(R.id.team_preview_bar_chart)
 
         val pieChart = fragmentLayout.findViewById<PieChart>(R.id.team_preview_pie_chart)
         pieChart.setUsePercentValues(true)
@@ -162,6 +163,10 @@ class MyTeamPreviewFragment : Fragment() {
     }
 
     private fun setUpBarChart(teamData: TeamDataResponse) {
+
+        var playersData = teamData.players
+        playersData = playersData.sortedBy { it.uSG }.reversed()
+
         barChart.legend.isEnabled = false
         barChart.description.isEnabled = false
 
@@ -171,11 +176,11 @@ class MyTeamPreviewFragment : Fragment() {
         barChart.setPinchZoom(false)
 
         val players = ArrayList<String>()
-        players.add("Player 1")
-        players.add("Player 2")
-        players.add("Player 3")
-        players.add("Player 4")
-        players.add("Player 5")
+        players.add(playersData[0].first_name + " " + playersData[0].last_name)
+        players.add(playersData[1].first_name + " " + playersData[1].last_name)
+        players.add(playersData[2].first_name + " " + playersData[2].last_name)
+        players.add(playersData[3].first_name + " " + playersData[3].last_name)
+        players.add(playersData[4].first_name + " " + playersData[4].last_name)
 
         val barChartXAxis = barChart.xAxis
         barChartXAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -194,11 +199,11 @@ class MyTeamPreviewFragment : Fragment() {
         barChart.animateY(1500)
 
         val barEntries = ArrayList<BarEntry>()
-        barEntries.add(BarEntry(0f, 35.45f))
-        barEntries.add(BarEntry(1f, 23.39f))
-        barEntries.add(BarEntry(2f, 15.21f))
-        barEntries.add(BarEntry(3f, 13.12f))
-        barEntries.add(BarEntry(4f, 12.45f))
+        barEntries.add(BarEntry(0f, playersData[0].uSG))
+        barEntries.add(BarEntry(1f, playersData[1].uSG))
+        barEntries.add(BarEntry(2f, playersData[2].uSG))
+        barEntries.add(BarEntry(3f, playersData[3].uSG))
+        barEntries.add(BarEntry(4f, playersData[4].uSG))
 
         val barDataSet = BarDataSet(barEntries, "Player Usage")
         barDataSet.colors = listOf(Color.rgb(144, 202, 249))
@@ -259,6 +264,21 @@ class MyTeamPreviewFragment : Fragment() {
             val teamData = if (response.isSuccessful){
                 response.body()!!.team
             }else {
+                val player = PlayerDataResponse(-1, "", "", 0, "",
+                    0, 0, "", 0,
+                    0, 0, 0, 0,
+                    0, 0, 0,
+                    0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0f, 0f, 0f,
+                    0f, 0f,
+                    0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f)
                 TeamDataResponse(-1, "", "", "", "",
                     "", "", "", 0,
                     0, 0, 0, 0,
@@ -280,7 +300,7 @@ class MyTeamPreviewFragment : Fragment() {
                     0f, 0f, 0f,
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f, 0f)
+                    0f, 0f, 0f, 0f, 0f, 0f, arrayListOf(player))
             }
 
             uiThread { initializeTeam(teamData) }

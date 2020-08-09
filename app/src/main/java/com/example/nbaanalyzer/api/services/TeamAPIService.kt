@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface TeamAPIService {
-    @GET("advancedStatisticsCalculator/team-stats/{teamID}")
+    @GET("advancedStatisticsCalculator/team-players-stats/{teamID}")
     fun getTeamStats(@Path("teamID") team_id: Int): Call<TeamResponse>
 }

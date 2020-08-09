@@ -44,9 +44,9 @@
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/team_preview_bar_chart"
-        android:layout_width="250dp"
+        android:layout_width="400dp"
         android:layout_height="250dp"
-        android:layout_marginStart="252dp"
+        android:layout_marginStart="188dp"
         android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team_preview_radar_chart" />
