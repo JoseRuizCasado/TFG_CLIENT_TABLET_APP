@@ -74,6 +74,7 @@ data class TeamDataResponse(
     @field:Json(name = "eFG%") val eFG: Float,
     @field:Json(name = "FTARate") val fTARate: Float,
     @field:Json(name = "3FGARate") val threeFGARate: Float,
+    @field:Json(name = "TmOR%") val tmOR: Float,
     @field:Json(name = "TmDR%") val tmDR: Float,
     @field:Json(name = "BLK%") val bLK: Float,
     @field:Json(name = "TOV%") val tOV: Float,

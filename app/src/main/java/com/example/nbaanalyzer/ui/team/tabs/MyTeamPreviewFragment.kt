@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.api.RestAPI
 import com.example.nbaanalyzer.api.responses.TeamDataResponse
-import com.example.nbaanalyzer.ui.team.MyTeamFragment
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
@@ -36,6 +35,9 @@ import org.jetbrains.anko.uiThread
  */
 class MyTeamPreviewFragment : Fragment() {
 
+    lateinit var radarChart: RadarChart
+    lateinit var barChart: BarChart
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,84 +47,9 @@ class MyTeamPreviewFragment : Fragment() {
 
         getTeamByID(activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1))
 
-        val radarChart = fragmentLayout.findViewById<RadarChart>(R.id.team_preview_radar_chart)
+        radarChart = fragmentLayout.findViewById(R.id.team_preview_radar_chart)
 
-        radarChart.webColorInner = Color.LTGRAY
-        radarChart.webColor = Color.LTGRAY
-
-        val radarEntries = ArrayList<RadarEntry>()
-        radarEntries.add(RadarEntry(123.45f))
-        radarEntries.add(RadarEntry(111.45f))
-        radarEntries.add(RadarEntry(23.45f))
-        radarEntries.add(RadarEntry(56.45f))
-        radarEntries.add(RadarEntry(56.45f))
-
-        val radarDataSet = RadarDataSet(radarEntries,"Team Data")
-        radarDataSet.color = Color.rgb(201, 8, 42)
-        radarDataSet.fillColor = Color.rgb(201, 8, 42)
-        radarDataSet.setDrawFilled(true)
-        val radarData = RadarData(radarDataSet)
-        radarChart.data = radarData
-
-        radarChart.animateXY(1400, 1400, Easing.EaseInOutQuad)
-
-        radarChart.xAxis.valueFormatter = object : ValueFormatter() {
-            private val mActivities =
-                arrayOf("OffRtg", "DefRtg", "OR%", "DR%", "eFG%")
-
-            override fun getFormattedValue(value: Float): String {
-                return mActivities[value.toInt() % mActivities.size]
-            }
-        }
-
-        // radarChart.description.textColor = Color.WHITE
-        radarChart.description = null
-        radarChart.legend.isEnabled = false
-
-        val barChart = fragmentLayout.findViewById<BarChart>(R.id.team_preview_bar_chart)
-
-        barChart.legend.isEnabled = false
-        barChart.description.isEnabled = false
-
-        barChart.setDrawBarShadow(false)
-        barChart.setDrawValueAboveBar(true)
-
-        barChart.setPinchZoom(false)
-
-        val players = ArrayList<String>()
-        players.add("Player 1")
-        players.add("Player 2")
-        players.add("Player 3")
-        players.add("Player 4")
-        players.add("Player 5")
-
-        val barChartXAxis = barChart.xAxis
-        barChartXAxis.position = XAxis.XAxisPosition.BOTTOM
-        barChartXAxis.setDrawGridLines(false)
-        barChartXAxis.granularity = 1f
-        barChartXAxis.valueFormatter = IndexAxisValueFormatter(players)
-
-        val barChartLeftAxis = barChart.axisLeft
-        barChartLeftAxis.setDrawGridLines(false)
-        barChartLeftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
-        barChartLeftAxis.axisMinimum = 0f
-        barChartLeftAxis.spaceTop = 15f
-
-        barChart.axisRight.isEnabled = false
-
-        barChart.animateY(1500)
-
-        val barEntries = ArrayList<BarEntry>()
-        barEntries.add(BarEntry(0f, 35.45f))
-        barEntries.add(BarEntry(1f, 23.39f))
-        barEntries.add(BarEntry(2f, 15.21f))
-        barEntries.add(BarEntry(3f, 13.12f))
-        barEntries.add(BarEntry(4f, 12.45f))
-
-        val barDataSet = BarDataSet(barEntries, "Player Usage")
-        barDataSet.colors = listOf(Color.rgb(144, 202, 249))
-        val barData = BarData(barDataSet)
-        barChart.data = barData
+        barChart = fragmentLayout.findViewById<BarChart>(R.id.team_preview_bar_chart)
 
         val pieChart = fragmentLayout.findViewById<PieChart>(R.id.team_preview_pie_chart)
         pieChart.setUsePercentValues(true)
@@ -234,9 +161,93 @@ class MyTeamPreviewFragment : Fragment() {
         return fragmentLayout
     }
 
+    private fun setUpBarChart(teamData: TeamDataResponse) {
+        barChart.legend.isEnabled = false
+        barChart.description.isEnabled = false
+
+        barChart.setDrawBarShadow(false)
+        barChart.setDrawValueAboveBar(true)
+
+        barChart.setPinchZoom(false)
+
+        val players = ArrayList<String>()
+        players.add("Player 1")
+        players.add("Player 2")
+        players.add("Player 3")
+        players.add("Player 4")
+        players.add("Player 5")
+
+        val barChartXAxis = barChart.xAxis
+        barChartXAxis.position = XAxis.XAxisPosition.BOTTOM
+        barChartXAxis.setDrawGridLines(false)
+        barChartXAxis.granularity = 1f
+        barChartXAxis.valueFormatter = IndexAxisValueFormatter(players)
+
+        val barChartLeftAxis = barChart.axisLeft
+        barChartLeftAxis.setDrawGridLines(false)
+        barChartLeftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+        barChartLeftAxis.axisMinimum = 0f
+        barChartLeftAxis.spaceTop = 15f
+
+        barChart.axisRight.isEnabled = false
+
+        barChart.animateY(1500)
+
+        val barEntries = ArrayList<BarEntry>()
+        barEntries.add(BarEntry(0f, 35.45f))
+        barEntries.add(BarEntry(1f, 23.39f))
+        barEntries.add(BarEntry(2f, 15.21f))
+        barEntries.add(BarEntry(3f, 13.12f))
+        barEntries.add(BarEntry(4f, 12.45f))
+
+        val barDataSet = BarDataSet(barEntries, "Player Usage")
+        barDataSet.colors = listOf(Color.rgb(144, 202, 249))
+        val barData = BarData(barDataSet)
+        barChart.data = barData
+    }
+
+    private fun setUpRadarChart(team: TeamDataResponse) {
+
+        radarChart.webColorInner = Color.LTGRAY
+        radarChart.webColor = Color.LTGRAY
+
+        val radarEntries = ArrayList<RadarEntry>()
+        radarEntries.add(RadarEntry(team.tmOffRtg))
+        radarEntries.add(RadarEntry(team.defRtg))
+        radarEntries.add(RadarEntry(team.tmOR))
+        radarEntries.add(RadarEntry(team.tmDR))
+        radarEntries.add(RadarEntry(team.eFG * 100))
+
+        val radarDataSet = RadarDataSet(radarEntries, "Team Data")
+        radarDataSet.color = Color.rgb(201, 8, 42)
+        radarDataSet.fillColor = Color.rgb(201, 8, 42)
+        radarDataSet.setDrawFilled(true)
+        val radarData = RadarData(radarDataSet)
+        radarChart.data = radarData
+
+        radarChart.animateXY(1400, 1400, Easing.EaseInOutQuad)
+
+        radarChart.xAxis.valueFormatter = object : ValueFormatter() {
+            private val mActivities =
+                arrayOf("OffRtg", "DefRtg", "OR%", "DR%", "eFG%")
+
+            override fun getFormattedValue(value: Float): String {
+                return mActivities[value.toInt() % mActivities.size]
+            }
+        }
+
+        // radarChart.description.textColor = Color.WHITE
+        radarChart.description = null
+        radarChart.legend.isEnabled = false
+        radarChart.extraTopOffset = 30f
+        radarChart.invalidate()
+    }
+
     private fun initializeTeam (teamData: TeamDataResponse){
         val team = teamData
-        Toast.makeText(context, "HOLAAAAAAAA", Toast.LENGTH_LONG).show()
+        setUpRadarChart(team)
+        setUpBarChart(team)
+        Toast.makeText(context, team.head_coach_name, Toast.LENGTH_LONG).show()
 
     }
 
@@ -269,7 +280,7 @@ class MyTeamPreviewFragment : Fragment() {
                     0f, 0f, 0f,
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f)
+                    0f, 0f, 0f, 0f, 0f, 0f)
             }
 
             uiThread { initializeTeam(teamData) }

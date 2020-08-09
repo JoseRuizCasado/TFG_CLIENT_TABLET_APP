@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         // Load my team id
         val sharedPreferences = applicationContext.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val selectedTeamId= sharedPreferences.getInt("teamId", -1)
-        Toast.makeText(this, "Team id: $selectedTeamId", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Team id: $selectedTeamId", Toast.LENGTH_SHORT).show()
         if (selectedTeamId == -1){
             val intent = Intent(this, SelectYourTeamActivity::class.java)
             startActivity(intent)
