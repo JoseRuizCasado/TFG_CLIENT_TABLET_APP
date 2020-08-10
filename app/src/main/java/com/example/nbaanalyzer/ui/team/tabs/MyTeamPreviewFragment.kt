@@ -12,8 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.api.RestAPI
-import com.example.nbaanalyzer.api.responses.PlayerDataResponse
-import com.example.nbaanalyzer.api.responses.TeamDataResponse
+import com.example.nbaanalyzer.api.responses.*
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
@@ -38,6 +37,8 @@ class MyTeamPreviewFragment : Fragment() {
 
     lateinit var radarChart: RadarChart
     lateinit var barChart: BarChart
+    lateinit var pieChart: PieChart
+    lateinit var stackedBarChart: BarChart
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,68 +48,20 @@ class MyTeamPreviewFragment : Fragment() {
         val fragmentLayout = inflater.inflate(R.layout.fragment_team_preview, container, false)
 
         getTeamByID(activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1))
+        getTeamPointDistribution(activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1))
 
         radarChart = fragmentLayout.findViewById(R.id.team_preview_radar_chart)
 
         barChart = fragmentLayout.findViewById(R.id.team_preview_bar_chart)
 
-        val pieChart = fragmentLayout.findViewById<PieChart>(R.id.team_preview_pie_chart)
-        pieChart.setUsePercentValues(true)
-        pieChart.description.isEnabled = false
-        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+        pieChart = fragmentLayout.findViewById(R.id.team_preview_pie_chart)
 
-        pieChart.dragDecelerationFrictionCoef = 0.95f
+        stackedBarChart = fragmentLayout.findViewById(R.id.team_preview_stacked_bar_chart)
 
-        val pieCenterText = SpannableString("Team score distribution \n by position")
-        pieCenterText.setSpan(ForegroundColorSpan(activity!!.resources.getColor(R.color.colorPrimary)),
-            0, pieCenterText.length, 0)
-        pieChart.centerText = pieCenterText
+        return fragmentLayout
+    }
 
-        pieChart.isDrawHoleEnabled = true
-        pieChart.setHoleColor(Color.WHITE)
-
-        pieChart.setTransparentCircleColor(Color.WHITE)
-        pieChart.setTransparentCircleAlpha(110)
-
-        pieChart.holeRadius = 58f
-        pieChart.transparentCircleRadius = 61f
-
-        pieChart.setDrawCenterText(true)
-
-        pieChart.rotationAngle = 0f
-        pieChart.isRotationEnabled = true
-        pieChart.isHighlightPerTapEnabled = true
-
-        pieChart.animateY(1400, Easing.EaseInOutQuad)
-
-        pieChart.legend.isEnabled = false
-
-        pieChart.setEntryLabelColor(Color.WHITE)
-        pieChart.setEntryLabelTextSize(12f)
-
-        val pieEntriesList = ArrayList<PieEntry>()
-        pieEntriesList.add(PieEntry(1098f, "PG"))
-        pieEntriesList.add(PieEntry(529f, "SG"))
-        pieEntriesList.add(PieEntry(752f, "SF"))
-        pieEntriesList.add(PieEntry(1030f, "PG"))
-        pieEntriesList.add(PieEntry(932f, "C"))
-
-        val pieDataSet = PieDataSet(pieEntriesList, "Score per position")
-
-        val colors =  ColorTemplate.MATERIAL_COLORS.toMutableList()
-        colors.add(Color.rgb(255, 167, 38))
-        pieDataSet.colors = colors
-
-        val pieData = PieData(pieDataSet)
-        pieData.setValueFormatter(PercentFormatter(pieChart))
-        pieData.setValueTextSize(11f)
-        pieData.setValueTextColor(Color.WHITE)
-
-        pieChart.data = pieData
-        pieChart.highlightValues(null)
-
-        val stackedBarChart = fragmentLayout.findViewById<BarChart>(R.id.team_preview_stacked_bar_chart)
-
+    private fun setUpStackedBarChar(starterSubDistribution: StarterSubDistribution) {
         stackedBarChart.description.isEnabled = false
         stackedBarChart.animateY(1500)
 
@@ -138,11 +91,11 @@ class MyTeamPreviewFragment : Fragment() {
         stackedXLabels.labelCount = 5
 
         val stackedBarEntries = ArrayList<BarEntry>()
-        stackedBarEntries.add(BarEntry(0f, floatArrayOf(1000f, 98f)))
-        stackedBarEntries.add(BarEntry(1f, floatArrayOf(264.5f, 264.5f)))
-        stackedBarEntries.add(BarEntry(2f, floatArrayOf(652f, 100f)))
-        stackedBarEntries.add(BarEntry(3f, floatArrayOf(230f, 800f)))
-        stackedBarEntries.add(BarEntry(4f, floatArrayOf(890f, 42f)))
+        stackedBarEntries.add(BarEntry(0f, floatArrayOf(starterSubDistribution.pg_starter.toFloat(), starterSubDistribution.pg_sub.toFloat())))
+        stackedBarEntries.add(BarEntry(1f, floatArrayOf(starterSubDistribution.sg_starter.toFloat(), starterSubDistribution.sg_sub.toFloat())))
+        stackedBarEntries.add(BarEntry(2f, floatArrayOf(starterSubDistribution.sf_starter.toFloat(), starterSubDistribution.sf_sub.toFloat())))
+        stackedBarEntries.add(BarEntry(3f, floatArrayOf(starterSubDistribution.pf_starter.toFloat(), starterSubDistribution.pf_sub.toFloat())))
+        stackedBarEntries.add(BarEntry(4f, floatArrayOf(starterSubDistribution.c_starter.toFloat(), starterSubDistribution.c_sub.toFloat())))
 
         val stackedBarDataSet = BarDataSet(stackedBarEntries, "")
         stackedBarDataSet.stackLabels = (arrayOf("Starters", "Subs"))
@@ -158,8 +111,64 @@ class MyTeamPreviewFragment : Fragment() {
         stackedBarChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         stackedBarChart.legend.orientation = Legend.LegendOrientation.VERTICAL
         stackedBarChart.legend.setDrawInside(false)
+    }
 
-        return fragmentLayout
+    private fun setUpPieChart(pointsDistribution: PointsDistribution) {
+        pieChart.setUsePercentValues(true)
+        pieChart.description.isEnabled = false
+        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+
+        pieChart.dragDecelerationFrictionCoef = 0.95f
+
+        val pieCenterText = SpannableString("Team score distribution \n by position")
+        pieCenterText.setSpan(
+            ForegroundColorSpan(activity!!.resources.getColor(R.color.colorPrimary)),
+            0, pieCenterText.length, 0
+        )
+        pieChart.centerText = pieCenterText
+
+        pieChart.isDrawHoleEnabled = true
+        pieChart.setHoleColor(Color.WHITE)
+
+        pieChart.setTransparentCircleColor(Color.WHITE)
+        pieChart.setTransparentCircleAlpha(110)
+
+        pieChart.holeRadius = 58f
+        pieChart.transparentCircleRadius = 61f
+
+        pieChart.setDrawCenterText(true)
+
+        pieChart.rotationAngle = 0f
+        pieChart.isRotationEnabled = true
+        pieChart.isHighlightPerTapEnabled = true
+
+        pieChart.animateY(1400, Easing.EaseInOutQuad)
+
+        pieChart.legend.isEnabled = false
+
+        pieChart.setEntryLabelColor(Color.WHITE)
+        pieChart.setEntryLabelTextSize(12f)
+
+        val pieEntriesList = ArrayList<PieEntry>()
+        pieEntriesList.add(PieEntry(pointsDistribution.pg.toFloat(), "PG"))
+        pieEntriesList.add(PieEntry(pointsDistribution.sg.toFloat(), "SG"))
+        pieEntriesList.add(PieEntry(pointsDistribution.sf.toFloat(), "SF"))
+        pieEntriesList.add(PieEntry(pointsDistribution.pf.toFloat(), "PG"))
+        pieEntriesList.add(PieEntry(pointsDistribution.c.toFloat(), "C"))
+
+        val pieDataSet = PieDataSet(pieEntriesList, "Score per position")
+
+        val colors = ColorTemplate.MATERIAL_COLORS.toMutableList()
+        colors.add(Color.rgb(255, 167, 38))
+        pieDataSet.colors = colors
+
+        val pieData = PieData(pieDataSet)
+        pieData.setValueFormatter(PercentFormatter(pieChart))
+        pieData.setValueTextSize(11f)
+        pieData.setValueTextColor(Color.WHITE)
+
+        pieChart.data = pieData
+        pieChart.highlightValues(null)
     }
 
     private fun setUpBarChart(teamData: TeamDataResponse) {
@@ -248,12 +257,16 @@ class MyTeamPreviewFragment : Fragment() {
         radarChart.invalidate()
     }
 
-    private fun initializeTeam (teamData: TeamDataResponse){
-        val team = teamData
-        setUpRadarChart(team)
-        setUpBarChart(team)
-        Toast.makeText(context, team.head_coach_name, Toast.LENGTH_LONG).show()
+    private fun initializeTeamData (teamData: TeamDataResponse){
+        setUpRadarChart(teamData)
+        setUpBarChart(teamData)
+        Toast.makeText(context, teamData.head_coach_name, Toast.LENGTH_LONG).show()
 
+    }
+
+    private fun initializePointsDistribution (pointsDistribution: PointsDistribution, starterSubDistribution: StarterSubDistribution){
+        setUpPieChart(pointsDistribution)
+        setUpStackedBarChar(starterSubDistribution)
     }
 
     private fun getTeamByID ( team_id: Int){
@@ -303,8 +316,28 @@ class MyTeamPreviewFragment : Fragment() {
                     0f, 0f, 0f, 0f, 0f, 0f, arrayListOf(player))
             }
 
-            uiThread { initializeTeam(teamData) }
+            uiThread { initializeTeamData(teamData) }
         }
+    }
+
+    private fun getTeamPointDistribution( team_id: Int){
+        doAsync {
+            // Get Team Data from API
+            val api = RestAPI()
+            val response = api.getTeamPointsDistribution(team_id).execute()
+            val pointsDistribution: PointsDistribution
+            val pointStarterSub: StarterSubDistribution
+            if (response.isSuccessful){
+                pointsDistribution = response.body()!!.pointsDistribution
+                pointStarterSub = response.body()!!.starterSubDistribution
+            }else {
+                pointsDistribution = PointsDistribution(0, 0, 0, 0, 0)
+                pointStarterSub = StarterSubDistribution(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            }
+
+            uiThread { initializePointsDistribution(pointsDistribution, pointStarterSub) }
+        }
+
     }
 
 }

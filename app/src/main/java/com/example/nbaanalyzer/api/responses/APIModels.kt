@@ -143,3 +143,29 @@ data class PlayerDataResponse (
     @field:Json(name = "STL%") val sTL: Float,
     @field:Json(name = "USG%") val uSG: Float
 )
+
+data class PointsDistribution (
+    @field:Json(name = "PG") val pg: Int,
+    @field:Json(name = "SG") val sg: Int,
+    @field:Json(name = "SF") val sf: Int,
+    @field:Json(name = "PF") val pf: Int,
+    @field:Json(name = "C") val c: Int
+)
+
+data class StarterSubDistribution(
+    @field:Json(name = "PG_Subs") val pg_sub: Int,
+    @field:Json(name = "PG_Starter") val pg_starter: Int,
+    @field:Json(name = "SG_Subs") val sg_sub: Int,
+    @field:Json(name = "SG_Starter") val sg_starter: Int,
+    @field:Json(name = "SF_Subs") val sf_sub: Int,
+    @field:Json(name = "SF_Starter") val sf_starter: Int,
+    @field:Json(name = "PF_Subs") val pf_sub: Int,
+    @field:Json(name = "PF_Starter") val pf_starter: Int,
+    @field:Json(name = "C_Subs") val c_sub: Int,
+    @field:Json(name = "C_Starter") val c_starter: Int
+)
+
+data class PointsDistributionData(
+    @field:Json(name = "points_distribution") val pointsDistribution: PointsDistribution,
+    @field:Json(name = "starters_sub_distribution") val starterSubDistribution: StarterSubDistribution
+)

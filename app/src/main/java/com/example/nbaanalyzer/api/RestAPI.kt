@@ -1,5 +1,6 @@
 package com.example.nbaanalyzer.api
 
+import com.example.nbaanalyzer.api.responses.PointsDistributionData
 import com.example.nbaanalyzer.api.responses.TeamResponse
 import com.example.nbaanalyzer.api.services.TeamAPIService
 import retrofit2.Call
@@ -20,6 +21,10 @@ class RestAPI(){
 
     fun getTeamStats(team_id: Int): Call<TeamResponse>{
         return teamAPIService.getTeamStats(team_id)
+    }
+
+    fun getTeamPointsDistribution(team_id: Int): Call<PointsDistributionData>{
+        return teamAPIService.getTeamPointsDistribution(team_id)
     }
 
 }
