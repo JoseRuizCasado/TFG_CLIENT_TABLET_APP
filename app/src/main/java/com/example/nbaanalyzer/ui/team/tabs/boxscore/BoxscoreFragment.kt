@@ -30,26 +30,26 @@ class BoxscoreFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_boxscore, container, false)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.boxscore_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = TableViewAdapter(utils.playersStatistics){
-            Toast.makeText(activity, "${it.name} pressed, with id: ${it.id}", Toast.LENGTH_SHORT).show()
-            val intent = Intent(activity, PlayerActivity::class.java)
-            intent.putExtra("name", it.name)
-            intent.putExtra("position", it.position)
-            intent.putExtra("games", it.played_games)
-            intent.putExtra("minutes", it.mpg)
-            intent.putExtra("points", it.ppg)
-            intent.putExtra("offensive_rebounds", it.or)
-            intent.putExtra("defensive_rebounds", it.dr)
-            intent.putExtra("blocks", it.blk)
-            intent.putExtra("turnovers", it.tov)
-            intent.putExtra("fg%", it.fgp)
-            intent.putExtra("3pt%", it.threepp)
-            intent.putExtra("3pt_rate", it.threepr)
-            intent.putExtra("ft%", it.threepr)
-            startActivity(intent)
-        }
+//        val recyclerView = view.findViewById<RecyclerView>(R.id.boxscore_recycler_view)
+//        recyclerView.layoutManager = LinearLayoutManager(context)
+//        recyclerView.adapter = TableViewAdapter(utils.playersStatistics){
+//            Toast.makeText(activity, "${it.name} pressed, with id: ${it.id}", Toast.LENGTH_SHORT).show()
+//            val intent = Intent(activity, PlayerActivity::class.java)
+//            intent.putExtra("name", it.name)
+//            intent.putExtra("position", it.position)
+//            intent.putExtra("games", it.played_games)
+//            intent.putExtra("minutes", it.mpg)
+//            intent.putExtra("points", it.ppg)
+//            intent.putExtra("offensive_rebounds", it.or)
+//            intent.putExtra("defensive_rebounds", it.dr)
+//            intent.putExtra("blocks", it.blk)
+//            intent.putExtra("turnovers", it.tov)
+//            intent.putExtra("fg%", it.fgp)
+//            intent.putExtra("3pt%", it.threepp)
+//            intent.putExtra("3pt_rate", it.threepr)
+//            intent.putExtra("ft%", it.threepr)
+//            startActivity(intent)
+//        }
 
 
         return view

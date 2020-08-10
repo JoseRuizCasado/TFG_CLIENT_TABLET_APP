@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/item_boxscore_player_played_games"
-        android:layout_width="150dp"
+        android:layout_width="85dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:gravity="center"
@@ -69,50 +69,6 @@
         android:textAlignment="center"
         android:textColor="@color/window_background"
         android:text="PPG"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/item_boxscore_or"
-        android:layout_width="85dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="OR"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/item_boxscore_dr"
-        android:layout_width="85dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="DR"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/item_boxscore_blk"
-        android:layout_width="85dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="BLK"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/item_boxscore_tov"
-        android:layout_width="85dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="TOV"
         android:textSize="20sp" />
 
     <TextView
@@ -182,61 +138,6 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/item_boxscore_3pr"
-        android:layout_width="85dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="3PT RATE"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/item_boxscore_2pm"
-        android:layout_width="85dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="2PM"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/item_boxscore_2pa"
-        android:layout_width="85dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="2PA"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/item_boxscore_2pp"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="2P%"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/item_boxscore_efficient_field_goals"
-        android:layout_width="85dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/window_background"
-        android:text="eFG%"
-        android:textSize="20sp" />
-
-    <TextView
         android:id="@+id/item_boxscore_ftm"
         android:layout_width="85dp"
         android:layout_height="match_parent"
@@ -267,6 +168,248 @@
         android:textAlignment="center"
         android:textColor="@color/window_background"
         android:text="FT%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_assists"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="AST"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_or"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="OR"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_dr"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="DR"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_steal"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="STL"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_blk"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="BLK"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_tov"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="TOV"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_fouls"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="FOULS"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_offrtg"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="OffRtg"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_floorp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="Floor%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_defrtg"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="DefRtg"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_netrtg"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="NetRtg"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_tsp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="TS%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_efgp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="eFG%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_ftarate"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="FTARate"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_threerate"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="3FGARate"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_orp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="OR%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_drp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="DR%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_blkp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="BLK%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_tovp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="TOV%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_astp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="AST%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_stlp"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="STL%"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_boxscore_usagep"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/window_background"
+        android:text="USG%"
         android:textSize="20sp" />
 
 

@@ -20,10 +20,9 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import java.text.DecimalFormat
 import kotlin.random.Random
 
-/**
- * A simple [Fragment] subclass.
- */
 class PlayerPreviewFragment : Fragment() {
+
+    lateinit var radarChart: RadarChart
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,50 +35,25 @@ class PlayerPreviewFragment : Fragment() {
         fragmentLayout.findViewById<TextView>(R.id.player_preview_position).text = playerActivity.playerPosition
         fragmentLayout.findViewById<TextView>(R.id.player_preview_play_style).text = "Cluster 2"
         fragmentLayout.findViewById<TextView>(R.id.player_preview_games).text = playerActivity.playedGames.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_minutes).text = playerActivity.playedMinutes.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_points).text = playerActivity.scoredPoints.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_oreb).text =playerActivity.offensiveRebounds.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_dreb).text =playerActivity.defensiveRebounds.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_blk).text =playerActivity.blocks.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_tov).text =playerActivity.turnovers.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_fg).text =playerActivity.fgp.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_3pt).text =playerActivity.threepp.toString()
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_3pt_rate).text =playerActivity.threepr.toString()
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_minutes).text = "%.2f".format(playerActivity.playedMinutes)
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_points).text = "%.2f".format(playerActivity.scoredPoints)
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_oreb).text = "%.2f".format(playerActivity.offensiveRebounds)
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_dreb).text = "%.2f".format(playerActivity.defensiveRebounds)
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_blk).text = "%.2f".format(playerActivity.blocks)
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_tov).text = "%.2f".format(playerActivity.turnovers)
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_fg).text = "%.2f".format(playerActivity.fgp)
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_3pt).text = "%.2f".format(playerActivity.threepp)
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_3pt_rate).text = "%.2f".format(playerActivity.threepr)
 
-        val radarChart = fragmentLayout.findViewById<RadarChart>(R.id.player_preview_radar_chart)
+        val offRtg = playerActivity.offRtg
+        val defRtg = playerActivity.defRtg
+        val drp = playerActivity.drp
+        val tsp = playerActivity.tsp * 100
+        val efgp = playerActivity.efgp * 100
 
-        radarChart.webColorInner = Color.LTGRAY
-        radarChart.webColor = Color.LTGRAY
+        radarChart = fragmentLayout.findViewById(R.id.player_preview_radar_chart)
 
-
-        val radarEntries = ArrayList<RadarEntry>()
-        radarEntries.add(RadarEntry(123.45f))
-        radarEntries.add(RadarEntry(111.45f))
-        radarEntries.add(RadarEntry(23.45f))
-        radarEntries.add(RadarEntry(56.45f))
-        radarEntries.add(RadarEntry(56.45f))
-
-        val radarDataSet = RadarDataSet(radarEntries,"Player Data")
-        radarDataSet.color = Color.rgb(201, 8, 42)
-        radarDataSet.fillColor = Color.rgb(201, 8, 42)
-        radarDataSet.setDrawFilled(true)
-        val radarData = RadarData(radarDataSet)
-        radarChart.data = radarData
-
-        radarChart.animateXY(1400, 1400, Easing.EaseInOutQuad)
-
-        radarChart.xAxis.valueFormatter = object : ValueFormatter() {
-            private val mActivities =
-                arrayOf("OffRtg", "DefRtg", "OR%", "DR%", "eFG%")
-
-            override fun getFormattedValue(value: Float): String {
-                return mActivities[value.toInt() % mActivities.size]
-            }
-        }
-
-        // radarChart.description.textColor = Color.WHITE
-        radarChart.description = null
-        radarChart.legend.isEnabled = false
+        setUpRadarChart(offRtg, defRtg, drp, tsp, efgp)
 
         val combinedChart = fragmentLayout.findViewById<CombinedChart>(R.id.player_preview_combined_chart)
         combinedChart.description.isEnabled = false
@@ -146,6 +120,41 @@ class PlayerPreviewFragment : Fragment() {
         combinedChart.data = combinedData
 
         return fragmentLayout
+    }
+
+    private fun setUpRadarChart(offRtg: Float, defRtg: Float, drp: Float, tsp: Float, efgp: Float) {
+        radarChart.webColorInner = Color.LTGRAY
+        radarChart.webColor = Color.LTGRAY
+
+
+        val radarEntries = ArrayList<RadarEntry>()
+        radarEntries.add(RadarEntry(offRtg))
+        radarEntries.add(RadarEntry(defRtg))
+        radarEntries.add(RadarEntry(drp))
+        radarEntries.add(RadarEntry(tsp))
+        radarEntries.add(RadarEntry(efgp))
+
+        val radarDataSet = RadarDataSet(radarEntries, "Player Data")
+        radarDataSet.color = Color.rgb(201, 8, 42)
+        radarDataSet.fillColor = Color.rgb(201, 8, 42)
+        radarDataSet.setDrawFilled(true)
+        val radarData = RadarData(radarDataSet)
+        radarChart.data = radarData
+
+        radarChart.animateXY(1400, 1400, Easing.EaseInOutQuad)
+
+        radarChart.xAxis.valueFormatter = object : ValueFormatter() {
+            private val mActivities =
+                arrayOf("OffRtg", "DefRtg", "DR%", "TS%", "eFG%")
+
+            override fun getFormattedValue(value: Float): String {
+                return mActivities[value.toInt() % mActivities.size]
+            }
+        }
+
+        // radarChart.description.textColor = Color.WHITE
+        radarChart.description = null
+        radarChart.legend.isEnabled = false
     }
 
     private class ClusterLabelFormatter internal constructor(): ValueFormatter() {
