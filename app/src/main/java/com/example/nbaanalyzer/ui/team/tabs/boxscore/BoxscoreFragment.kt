@@ -99,7 +99,25 @@ class BoxscoreFragment : Fragment() {
 
     private fun initializeRecyclerView(teamData: TeamDataResponse) {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = TableViewAdapter(teamData.players){
+        val teamAsPlayer = PlayerDataResponse(
+            -1, "Team", "", 0, "",
+            0, 0, "-", 0,
+            teamData.played_games, 0, 0, teamData.field_goals_made,
+            0, teamData.field_goals_attempts, teamData.three_points_field_goals_made,
+            0, teamData.three_points_field_goals_attempts,
+            teamData.free_throws_made, 0, teamData.free_throws_attempts, 0,
+            0, 0, 0, 0, 0,
+            0, 0f, teamData.scored_points_per_game, teamData.field_goals_made_per_game,
+            teamData.field_goals_miss_per_game, teamData.field_goals_attempts_per_game,
+            teamData.three_points_field_goals_made_per_game, teamData.three_points_field_goals_attempts_per_game,
+            teamData.free_throws_made_per_game, teamData.free_throws_attempts_per_game, teamData.assists_per_game,
+            teamData.offensive_rebounds_per_game, teamData.defensive_rebounds_per_game, teamData.steals_per_game,
+            teamData.blocks_per_game, teamData.turnovers_per_game, teamData.personal_fouls_per_game, teamData.tmOffRtg,
+            teamData.tmFloor, teamData.defRtg, teamData.defRtg, teamData.tS, teamData.eFG, teamData.fTARate, teamData.threeFGARate,
+            teamData.tmOR, teamData.tmDR, teamData.bLK, teamData.tOV, teamData.aST, teamData.sTL, 0f
+        )
+        val players = listOf(teamAsPlayer) + teamData.players
+        recyclerView.adapter = TableViewAdapter(players){
             val intent = Intent(activity, PlayerActivity::class.java)
             intent.putExtra("player_id", it.player_id)
             intent.putExtra("name", "${it.first_name} ${it.last_name}")
@@ -120,7 +138,8 @@ class BoxscoreFragment : Fragment() {
             intent.putExtra("DR%", it.dR)
             intent.putExtra("TS%", it.tS)
             intent.putExtra("eFG%", it.eFG)
-            startActivity(intent)
+            if (it.player_id != -1)
+                startActivity(intent)
         }
     }
 
