@@ -1,13 +1,10 @@
 package com.example.nbaanalyzer.api
 
-import com.example.nbaanalyzer.api.responses.PointsDistributionData
-import com.example.nbaanalyzer.api.responses.TeamResponse
-import com.example.nbaanalyzer.api.services.TeamAPIService
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class RestAPI(){
+class RestAPI{
 
     private val  teamAPIService: TeamAPIService
 
@@ -25,6 +22,10 @@ class RestAPI(){
 
     fun getTeamPointsDistribution(team_id: Int): Call<PointsDistributionData>{
         return teamAPIService.getTeamPointsDistribution(team_id)
+    }
+
+    fun getPlayerDefendData(player_id: Int, player_position: String): Call<DefendDataResponse>{
+        return teamAPIService.getPlayerDefendInfo(player_id, player_position)
     }
 
 }

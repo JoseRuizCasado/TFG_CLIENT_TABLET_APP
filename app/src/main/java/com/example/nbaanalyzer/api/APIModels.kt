@@ -1,4 +1,4 @@
-package com.example.nbaanalyzer.api.responses
+package com.example.nbaanalyzer.api
 
 import com.squareup.moshi.Json
 
@@ -92,6 +92,7 @@ data class PlayerDataResponse (
     @field:Json(name = "height") val height: Int,
     @field:Json(name = "weight") val weight: Int,
     @field:Json(name = "position") val position: String,
+    @field:Json(name = "cluster") val cluster: Int,
     @field:Json(name = "played_games") val played_games: Int,
     @field:Json(name = "played_minutes") val played_minutes: Int,
     @field:Json(name = "scored_points") val scored_points: Int,
@@ -168,4 +169,23 @@ data class StarterSubDistribution(
 data class PointsDistributionData(
     @field:Json(name = "points_distribution") val pointsDistribution: PointsDistribution,
     @field:Json(name = "starters_sub_distribution") val starterSubDistribution: StarterSubDistribution
+)
+
+data class ClusterData(
+    @field:Json(name = "failure") val failure: Int,
+    @field:Json(name = "success") val success: Int
+)
+
+data class DefendData(
+    @field:Json(name = "Cluster 0") val cluster0: ClusterData,
+    @field:Json(name = "Cluster 1") val cluster1: ClusterData,
+    @field:Json(name = "Cluster 2") val cluster2: ClusterData,
+    @field:Json(name = "Cluster 3") val cluster3: ClusterData,
+    @field:Json(name = "Cluster 4") val cluster4: ClusterData,
+    @field:Json(name = "Cluster 5") val cluster5: ClusterData
+)
+
+data class DefendDataResponse(
+    @field:Json(name = "player_data") val playerData: DefendData,
+    @field:Json(name = "cluster_data") val clusterData: DefendData
 )

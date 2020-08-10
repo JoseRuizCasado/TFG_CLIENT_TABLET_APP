@@ -14,6 +14,7 @@ class PlayerActivity : AppCompatActivity() {
 
     private lateinit var playerName: String
     lateinit var playerPosition: String
+    var cluster by Delegates.notNull<Int>()
     var playedGames by Delegates.notNull<Int>()
     var playedMinutes by Delegates.notNull<Float>()
     var scoredPoints by Delegates.notNull<Float>()
@@ -42,6 +43,7 @@ class PlayerActivity : AppCompatActivity() {
         tool_bar_player_activity.title = playerName
         playerID = intent.getIntExtra("player_id", 0)
         playerPosition = intent.getStringExtra("position")!!
+        cluster = intent.getIntExtra("cluster", 0)
         playedGames = intent.getIntExtra("games", 0)
         playedMinutes = intent.getFloatExtra("minutes", 0f)
         scoredPoints = intent.getFloatExtra("points", 0f)

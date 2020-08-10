@@ -11,16 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import com.example.nbaanalyzer.api.RestAPI
-import com.example.nbaanalyzer.api.responses.TeamDataResponse
-import com.example.nbaanalyzer.api.services.TeamAPIService
 import com.example.nbaanalyzer.ui.help.HelpFragment
 import com.example.nbaanalyzer.ui.team.MyTeamFragment
 import com.example.nbaanalyzer.ui.select_team.SelectYourTeamActivity
 import com.example.nbaanalyzer.ui.teams.TeamsFragment
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
 

@@ -11,8 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
-import com.example.nbaanalyzer.api.RestAPI
-import com.example.nbaanalyzer.api.responses.*
+import com.example.nbaanalyzer.api.*
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
@@ -277,22 +276,25 @@ class MyTeamPreviewFragment : Fragment() {
             val teamData = if (response.isSuccessful){
                 response.body()!!.team
             }else {
-                val player = PlayerDataResponse(-1, "", "", 0, "",
+                val player = PlayerDataResponse(
+                    -1, "", "", 0, "",
                     0, 0, "", 0,
                     0, 0, 0, 0,
                     0, 0, 0,
                     0, 0,
                     0, 0, 0, 0,
                     0, 0, 0, 0, 0,
-                    0f, 0f, 0f,
+                    0, 0f, 0f, 0f,
                     0f, 0f,
                     0f, 0f,
                     0f, 0f, 0f,
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f, 0f, 0f)
-                TeamDataResponse(-1, "", "", "", "",
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f
+                )
+                TeamDataResponse(
+                    -1, "", "", "", "",
                     "", "", "", 0,
                     0, 0, 0, 0,
                     0, 0, 0,
@@ -313,7 +315,8 @@ class MyTeamPreviewFragment : Fragment() {
                     0f, 0f, 0f,
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f, 0f, arrayListOf(player))
+                    0f, 0f, 0f, 0f, 0f, 0f, arrayListOf(player)
+                )
             }
 
             uiThread { initializeTeamData(teamData) }
@@ -331,8 +334,21 @@ class MyTeamPreviewFragment : Fragment() {
                 pointsDistribution = response.body()!!.pointsDistribution
                 pointStarterSub = response.body()!!.starterSubDistribution
             }else {
-                pointsDistribution = PointsDistribution(0, 0, 0, 0, 0)
-                pointStarterSub = StarterSubDistribution(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                pointsDistribution =
+                    PointsDistribution(0, 0, 0, 0, 0)
+                pointStarterSub =
+                    StarterSubDistribution(
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    )
             }
 
             uiThread { initializePointsDistribution(pointsDistribution, pointStarterSub) }

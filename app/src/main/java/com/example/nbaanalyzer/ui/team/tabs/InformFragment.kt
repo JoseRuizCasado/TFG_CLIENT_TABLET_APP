@@ -43,7 +43,6 @@ class InformFragment : Fragment() {
         informLayOut.informTextLocal.text = utils.getTeamById(teamId)
         informLayOut.informTextVisitor.text = utils.getTeamById(selectedTeam)
 
-//        val text = "${utils.getTeamById(teamId)} VS ${utils.getTeamById(selectedTeam)}"
 
         val barChart = informLayOut.findViewById<HorizontalBarChart>(R.id.inform_bar_chart)
         barChart.setDrawGridBackground(false)

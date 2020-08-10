@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nbaanalyzer.R
-import com.example.nbaanalyzer.api.responses.PlayerDataResponse
-import com.example.nbaanalyzer.models.Player
+import com.example.nbaanalyzer.api.PlayerDataResponse
 import kotlinx.android.synthetic.main.item_boxscore_table.view.*
 
 class TableViewAdapter(private val playerStatisticsList: List<PlayerDataResponse>, private val listener: (PlayerDataResponse) -> Unit): RecyclerView.Adapter<TableViewAdapter.ViewHolder>() {

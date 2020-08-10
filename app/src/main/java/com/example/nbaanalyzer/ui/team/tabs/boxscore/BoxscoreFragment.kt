@@ -6,22 +6,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.nbaanalyzer.R
-import com.example.nbaanalyzer.Utils
+import com.example.nbaanalyzer.api.RestAPI
+import com.example.nbaanalyzer.api.PlayerDataResponse
+import com.example.nbaanalyzer.api.TeamDataResponse
 import com.example.nbaanalyzer.ui.player.PlayerActivity
+import com.example.nbaanalyzer.ui.team.TeamDetailsActivity
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * A simple [Fragment] subclass.
  */
 class BoxscoreFragment : Fragment() {
 
-    private val utils = Utils()
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,29 +32,96 @@ class BoxscoreFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_boxscore, container, false)
 
-//        val recyclerView = view.findViewById<RecyclerView>(R.id.boxscore_recycler_view)
-//        recyclerView.layoutManager = LinearLayoutManager(context)
-//        recyclerView.adapter = TableViewAdapter(utils.playersStatistics){
-//            Toast.makeText(activity, "${it.name} pressed, with id: ${it.id}", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(activity, PlayerActivity::class.java)
-//            intent.putExtra("name", it.name)
-//            intent.putExtra("position", it.position)
-//            intent.putExtra("games", it.played_games)
-//            intent.putExtra("minutes", it.mpg)
-//            intent.putExtra("points", it.ppg)
-//            intent.putExtra("offensive_rebounds", it.or)
-//            intent.putExtra("defensive_rebounds", it.dr)
-//            intent.putExtra("blocks", it.blk)
-//            intent.putExtra("turnovers", it.tov)
-//            intent.putExtra("fg%", it.fgp)
-//            intent.putExtra("3pt%", it.threepp)
-//            intent.putExtra("3pt_rate", it.threepr)
-//            intent.putExtra("ft%", it.threepr)
-//            startActivity(intent)
-//        }
+        val teamDetailsActivity = activity as TeamDetailsActivity
+
+        getTeamByID(teamDetailsActivity.selectedTeam)
+
+        recyclerView = view.findViewById(R.id.boxscore_recycler_view)
 
 
         return view
+    }
+
+    private fun getTeamByID ( team_id: Int){
+        doAsync {
+            // Get Team data  from API
+            val api = RestAPI()
+            val response = api.getTeamStats(team_id).execute()
+            val teamData = if (response.isSuccessful){
+                response.body()!!.team
+            }else {
+                val player = PlayerDataResponse(
+                    -1, "", "", 0, "",
+                    0, 0, "", 0,
+                    0, 0, 0, 0,
+                    0, 0, 0,
+                    0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0f, 0f, 0f,
+                    0f, 0f,
+                    0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f
+                )
+                TeamDataResponse(
+                    -1, "", "", "", "",
+                    "", "", "", 0,
+                    0, 0, 0, 0,
+                    0, 0, 0,
+                    0, 0,
+                    0, 0,
+                    0, 0,
+                    0, 0,
+                    0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0f, 0f,
+                    0f, 0f,
+                    0f, 0f,
+                    0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f, 0f, arrayListOf(player)
+                )
+            }
+
+            uiThread { initializeRecyclerView(teamData) }
+        }
+    }
+
+    private fun initializeRecyclerView(teamData: TeamDataResponse) {
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = TableViewAdapter(teamData.players){
+            val intent = Intent(activity, PlayerActivity::class.java)
+            intent.putExtra("player_id", it.player_id)
+            intent.putExtra("name", "${it.first_name} ${it.last_name}")
+            intent.putExtra("position", it.position)
+            intent.putExtra("games", it.played_games)
+            intent.putExtra("minutes", (it.played_minutes_per_game / 60))
+            intent.putExtra("points", it.scored_points_per_game)
+            intent.putExtra("offensive_rebounds", it.offensive_rebounds_per_game)
+            intent.putExtra("defensive_rebounds", it.defensive_rebounds_per_game)
+            intent.putExtra("blocks", it.blocks_per_game)
+            intent.putExtra("turnovers", it.turnovers_per_game)
+            intent.putExtra("fg%", (it.field_goals_made.toFloat() / it.field_goals_attempts.toFloat()))
+            intent.putExtra("3pt%", (it.three_points_field_goals_made.toFloat() / it.three_points_field_goals_attempts.toFloat()))
+            intent.putExtra("3pt_rate", it.threeFGARate)
+            intent.putExtra("ft%", it.fTARate)
+            intent.putExtra("OffRtg", it.offRtg)
+            intent.putExtra("DefRtg", it.defRtg)
+            intent.putExtra("DR%", it.dR)
+            intent.putExtra("TS%", it.tS)
+            intent.putExtra("eFG%", it.eFG)
+            startActivity(intent)
+        }
     }
 
 }

@@ -33,7 +33,7 @@ class PlayerPreviewFragment : Fragment() {
 
         val playerActivity = activity as PlayerActivity
         fragmentLayout.findViewById<TextView>(R.id.player_preview_position).text = playerActivity.playerPosition
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_play_style).text = "Cluster 2"
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_play_style).text = playerActivity.cluster.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_games).text = playerActivity.playedGames.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_minutes).text = "%.2f".format(playerActivity.playedMinutes)
         fragmentLayout.findViewById<TextView>(R.id.player_preview_points).text = "%.2f".format(playerActivity.scoredPoints)

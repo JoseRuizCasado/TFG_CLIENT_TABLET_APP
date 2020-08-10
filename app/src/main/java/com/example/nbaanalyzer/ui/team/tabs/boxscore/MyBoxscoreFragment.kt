@@ -7,24 +7,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.nbaanalyzer.R
-import com.example.nbaanalyzer.Utils
 import com.example.nbaanalyzer.api.RestAPI
-import com.example.nbaanalyzer.api.responses.PlayerDataResponse
-import com.example.nbaanalyzer.api.responses.TeamDataResponse
+import com.example.nbaanalyzer.api.PlayerDataResponse
+import com.example.nbaanalyzer.api.TeamDataResponse
 import com.example.nbaanalyzer.ui.player.PlayerActivity
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 class MyBoxscoreFragment : Fragment() {
 
-    private val utils = Utils()
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -49,8 +44,9 @@ class MyBoxscoreFragment : Fragment() {
             val teamData = if (response.isSuccessful){
                 response.body()!!.team
             }else {
-                val player = PlayerDataResponse(-1, "", "", 0, "",
-                    0, 0, "", 0,
+                val player = PlayerDataResponse(
+                    -1, "", "", 0, "",
+                    0, 0, "", 0,0,
                     0, 0, 0, 0,
                     0, 0, 0,
                     0, 0,
@@ -63,8 +59,10 @@ class MyBoxscoreFragment : Fragment() {
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f, 0f, 0f)
-                TeamDataResponse(-1, "", "", "", "",
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f
+                )
+                TeamDataResponse(
+                    -1, "", "", "", "",
                     "", "", "", 0,
                     0, 0, 0, 0,
                     0, 0, 0,
@@ -85,7 +83,8 @@ class MyBoxscoreFragment : Fragment() {
                     0f, 0f, 0f,
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f, 0f, arrayListOf(player))
+                    0f, 0f, 0f, 0f, 0f, 0f, arrayListOf(player)
+                )
             }
 
             uiThread { initializeRecyclerView(teamData) }
@@ -115,6 +114,7 @@ class MyBoxscoreFragment : Fragment() {
             intent.putExtra("DR%", it.dR)
             intent.putExtra("TS%", it.tS)
             intent.putExtra("eFG%", it.eFG)
+            intent.putExtra("cluster", it.cluster)
             startActivity(intent)
         }
     }
