@@ -233,7 +233,7 @@ class TeamPreviewFragment : Fragment() {
         val radarEntries = ArrayList<RadarEntry>()
         radarEntries.add(RadarEntry(team.tmOffRtg))
         radarEntries.add(RadarEntry(team.defRtg))
-        radarEntries.add(RadarEntry(team.tmOR))
+        radarEntries.add(RadarEntry(team.pace))
         radarEntries.add(RadarEntry(team.tmDR))
         radarEntries.add(RadarEntry(team.eFG * 100))
 
@@ -248,7 +248,7 @@ class TeamPreviewFragment : Fragment() {
 
         radarChart.xAxis.valueFormatter = object : ValueFormatter() {
             private val mActivities =
-                arrayOf("OffRtg", "DefRtg", "OR%", "DR%", "eFG%")
+                arrayOf("OffRtg", "DefRtg", "Pace", "DR%", "eFG%")
 
             override fun getFormattedValue(value: Float): String {
                 return mActivities[value.toInt() % mActivities.size]
