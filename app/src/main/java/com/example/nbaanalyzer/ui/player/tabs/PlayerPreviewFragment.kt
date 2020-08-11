@@ -6,8 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
+import com.example.nbaanalyzer.api.ClusterData
+import com.example.nbaanalyzer.api.DefendData
+import com.example.nbaanalyzer.api.DefendDataResponse
+import com.example.nbaanalyzer.api.RestAPI
 import com.example.nbaanalyzer.ui.player.PlayerActivity
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.CombinedChart
@@ -17,12 +22,13 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
-import java.text.DecimalFormat
-import kotlin.random.Random
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class PlayerPreviewFragment : Fragment() {
 
-    lateinit var radarChart: RadarChart
+    private lateinit var radarChart: RadarChart
+    private lateinit var combinedChart: CombinedChart
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,10 +58,21 @@ class PlayerPreviewFragment : Fragment() {
         val efgp = playerActivity.efgp * 100
 
         radarChart = fragmentLayout.findViewById(R.id.player_preview_radar_chart)
+        combinedChart = fragmentLayout.findViewById(R.id.player_preview_combined_chart)
+
+        val playerId = (activity as PlayerActivity).playerID
+        val position = (activity as PlayerActivity).playerPosition
+        getPlayerDefendData(playerId, position)
 
         setUpRadarChart(offRtg, defRtg, drp, tsp, efgp)
 
-        val combinedChart = fragmentLayout.findViewById<CombinedChart>(R.id.player_preview_combined_chart)
+
+
+        return fragmentLayout
+    }
+
+    private fun setUpCombinedChart(defendData: DefendDataResponse, position: String) {
+
         combinedChart.description.isEnabled = false
         combinedChart.setBackgroundColor(Color.WHITE)
         combinedChart.setDrawGridBackground(false)
@@ -79,8 +96,13 @@ class PlayerPreviewFragment : Fragment() {
         combinedChart.xAxis.granularity = 1f
 
         val lineEntries = ArrayList<Entry>()
-        for (index in 0 until 6)
-            lineEntries.add(Entry(index.toFloat(), Random.nextDouble(5.0, 15.0).toFloat()))
+        lineEntries.add(Entry(0f, defendData.clusterData.cluster0.success.toFloat() / defendData.clusterData.cluster0.failure.toFloat()))
+        lineEntries.add(Entry(1f, defendData.clusterData.cluster1.success.toFloat() / defendData.clusterData.cluster1.failure.toFloat()))
+        lineEntries.add(Entry(2f, defendData.clusterData.cluster2.success.toFloat() / defendData.clusterData.cluster2.failure.toFloat()))
+        lineEntries.add(Entry(3f, defendData.clusterData.cluster3.success.toFloat() / defendData.clusterData.cluster3.failure.toFloat()))
+        lineEntries.add(Entry(4f, defendData.clusterData.cluster4.success.toFloat() / defendData.clusterData.cluster4.failure.toFloat()))
+        if (position == "SG")
+            lineEntries.add(Entry(5f, defendData.clusterData.cluster5.success.toFloat() / defendData.clusterData.cluster5.failure.toFloat()))
 
         val lineDataSet = LineDataSet(lineEntries, "Cluster Mean")
         lineDataSet.color = Color.rgb(23, 64, 139)
@@ -99,8 +121,13 @@ class PlayerPreviewFragment : Fragment() {
 
         val barEntries = ArrayList<BarEntry>()
 
-        for (index in 0 until 6)
-            barEntries.add(BarEntry(index.toFloat(), Random.nextDouble(5.0, 25.0).toFloat()))
+        barEntries.add(BarEntry(0f, defendData.playerData.cluster0.success.toFloat() / defendData.playerData.cluster0.failure.toFloat()))
+        barEntries.add(BarEntry(1f, defendData.playerData.cluster1.success.toFloat() / defendData.playerData.cluster1.failure.toFloat()))
+        barEntries.add(BarEntry(2f, defendData.playerData.cluster2.success.toFloat() / defendData.playerData.cluster2.failure.toFloat()))
+        barEntries.add(BarEntry(3f, defendData.playerData.cluster3.success.toFloat() / defendData.playerData.cluster3.failure.toFloat()))
+        barEntries.add(BarEntry(4f, defendData.playerData.cluster4.success.toFloat() / defendData.playerData.cluster4.failure.toFloat()))
+        if (position == "SG")
+            barEntries.add(BarEntry(5f, defendData.playerData.cluster5.success.toFloat() / defendData.playerData.cluster5.failure.toFloat()))
 
         val barDataSet = BarDataSet(barEntries, "Player defend efficiency")
         barDataSet.color = Color.rgb(229, 115, 115)
@@ -115,11 +142,9 @@ class PlayerPreviewFragment : Fragment() {
         combinedData.setData(lineData)
         combinedData.setData(barData)
 
-        combinedChart.xAxis.axisMaximum =  combinedData.xMax + 1f
+        combinedChart.xAxis.axisMaximum = combinedData.xMax + 1f
         combinedChart.animateXY(1400, 1400)
         combinedChart.data = combinedData
-
-        return fragmentLayout
     }
 
     private fun setUpRadarChart(offRtg: Float, defRtg: Float, drp: Float, tsp: Float, efgp: Float) {
@@ -157,14 +182,24 @@ class PlayerPreviewFragment : Fragment() {
         radarChart.legend.isEnabled = false
     }
 
-    private class ClusterLabelFormatter internal constructor(): ValueFormatter() {
-        private val mFormat: DecimalFormat = DecimalFormat("###")
-        override fun getFormattedValue(value: Float): String {
-            if (value > 0){
-                return "Cluster " + value.toInt()
+    private fun getPlayerDefendData(playerId: Int, position: String){
+        doAsync {
+            val api = RestAPI()
+            val response = api.getPlayerDefendData(playerId, position).execute()
+            val defendData:  DefendDataResponse= if (response.isSuccessful){
+                response.body()!!
+            }else{
+                val clusterData = ClusterData(0, 0)
+                val defData = DefendData(clusterData, clusterData, clusterData, clusterData, clusterData, clusterData)
+                DefendDataResponse(defData, defData)
             }
-            return ""
+            uiThread { initializeCombinedChart(defendData, position) }
         }
     }
+
+    private fun initializeCombinedChart(defendData: DefendDataResponse, position: String) {
+        setUpCombinedChart(defendData, position)
+    }
+
 
 }

@@ -8,7 +8,6 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.api.*
@@ -260,8 +259,6 @@ class MyTeamPreviewFragment : Fragment() {
     private fun initializeTeamData (teamData: TeamDataResponse){
         setUpRadarChart(teamData)
         setUpBarChart(teamData)
-        Toast.makeText(context, teamData.head_coach_name, Toast.LENGTH_LONG).show()
-
     }
 
     private fun initializePointsDistribution (pointsDistribution: PointsDistribution, starterSubDistribution: StarterSubDistribution){

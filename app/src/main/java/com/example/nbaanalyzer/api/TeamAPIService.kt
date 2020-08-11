@@ -11,7 +11,7 @@ interface TeamAPIService {
     @GET( "dbmanager/get-team-distributed-points/{team_id}")
     fun getTeamPointsDistribution(@Path("team_id") team_id: Int): Call<PointsDistributionData>
 
-    @GET("http://127.0.0.1:8000/dbmanager/get-defend-info/{player_id}/{player_position}")
+    @GET("dbmanager/get-defend-info/{player_id}/{player_position}")
     fun getPlayerDefendInfo(@Path("player_id") player_id: Int,
                             @Path("player_position") player_position: String): Call<DefendDataResponse>
 
