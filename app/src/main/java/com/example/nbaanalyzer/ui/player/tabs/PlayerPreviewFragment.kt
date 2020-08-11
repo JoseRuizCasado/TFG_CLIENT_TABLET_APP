@@ -39,7 +39,7 @@ class PlayerPreviewFragment : Fragment() {
 
         val playerActivity = activity as PlayerActivity
         fragmentLayout.findViewById<TextView>(R.id.player_preview_position).text = playerActivity.playerPosition
-        fragmentLayout.findViewById<TextView>(R.id.player_preview_play_style).text = playerActivity.cluster.toString()
+        fragmentLayout.findViewById<TextView>(R.id.player_preview_play_style).text = getClusterLabel(playerActivity.cluster, playerActivity.playerPosition)
         fragmentLayout.findViewById<TextView>(R.id.player_preview_games).text = playerActivity.playedGames.toString()
         fragmentLayout.findViewById<TextView>(R.id.player_preview_minutes).text = "%.2f".format(playerActivity.playedMinutes)
         fragmentLayout.findViewById<TextView>(R.id.player_preview_points).text = "%.2f".format(playerActivity.scoredPoints)
@@ -199,6 +199,55 @@ class PlayerPreviewFragment : Fragment() {
 
     private fun initializeCombinedChart(defendData: DefendDataResponse, position: String) {
         setUpCombinedChart(defendData, position)
+    }
+
+    private fun getClusterLabel(cluster: Int, position: String): String{
+        var label = ""
+
+        if (cluster > 0 ){
+            when (position){
+                "PG" -> when (cluster){
+                    0 -> label = "Scorer Playmaker"
+                    1 -> label = "Secondary Scorer"
+                    2 -> label = "Playmaker"
+                    3 -> label = "Accurate Scorer"
+                    4 -> label = "Defender"
+                }
+                "SG" -> when (cluster){
+                    0 -> label = "3 and D"
+                    1 -> label = "Secondary Shooter"
+                    2 -> label = "Inefficient Scorer"
+                    3 -> label = "Efficient Scorer"
+                    4 -> label = "Efficient Shooter"
+                    5 -> label = "Defender"
+                }
+                "SF" -> when (cluster){
+                    0 -> label = "Athletic"
+                    1 -> label = "Two Side Dominator"
+                    2 -> label = "Inefficient Scorer"
+                    3 -> label = "Efficient Scorer"
+                    4 -> label = "3 Points Shooter"
+                }
+                "PF" -> when (cluster){
+                    0 -> label = "Two Side"
+                    1 -> label = "Primary Scorer"
+                    2 -> label = "Open 4"
+                    3 -> label = "Two Side Dominator"
+                    4 -> label = "Role Player"
+                    5 -> label = "Efficient Shooter"
+                }
+                "C" -> when (cluster){
+                    0 -> label = "Role Defender"
+                    1 -> label = "Scorer and Defender"
+                    2 -> label = "Two Side Dominator"
+                    3 -> label = "Open 5"
+                    4 -> label = "Defender"
+                }
+            }
+
+        }
+
+        return label
     }
 
 
