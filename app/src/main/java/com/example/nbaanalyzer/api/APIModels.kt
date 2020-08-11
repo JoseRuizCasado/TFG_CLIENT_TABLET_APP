@@ -142,7 +142,8 @@ data class PlayerDataResponse (
     @field:Json(name = "TOV%") val tOV: Float,
     @field:Json(name = "AST%") val aST: Float,
     @field:Json(name = "STL%") val sTL: Float,
-    @field:Json(name = "USG%") val uSG: Float
+    @field:Json(name = "USG%") val uSG: Float,
+    @field:Json(name = "team_id") val team_id: Int
 )
 
 data class PointsDistribution (
@@ -188,4 +189,35 @@ data class DefendData(
 data class DefendDataResponse(
     @field:Json(name = "player_data") val playerData: DefendData,
     @field:Json(name = "cluster_data") val clusterData: DefendData
+)
+
+data class InformResponse(
+    @field:Json(name = "Local_TmOffRtg") val localOffRtg: Float,
+    @field:Json(name = "Local_TmFloor%") val localFloor: Float,
+    @field:Json(name = "Local_TmDefRtg") val localDefRtg: Float,
+    @field:Json(name = "Local_Pace") val localPace: Float,
+    @field:Json(name = "Local_TS%") val localTS: Float,
+    @field:Json(name = "Local_eFG%") val localeFG: Float,
+    @field:Json(name = "Local_FTARate") val localFTARate: Float,
+    @field:Json(name = "Local_3FGARate") val local3FGARate: Float,
+    @field:Json(name = "Local_TmOR%") val localOR: Float,
+    @field:Json(name = "Local_TmDR%") val localDR: Float,
+    @field:Json(name = "Local_BLK%") val localBLK: Float,
+    @field:Json(name = "Local_TOV%") val localTOV: Float,
+    @field:Json(name = "Local_STL%") val localSTL: Float,
+    @field:Json(name = "Visitor_TmOffRtg") val visitorOffRtg: Float,
+    @field:Json(name = "Visitor_TmFloor%") val visitorFloor: Float,
+    @field:Json(name = "Visitor_TmDefRtg") val visitorDefRtg: Float,
+    @field:Json(name = "Visitor_Pace") val visitorPace: Float,
+    @field:Json(name = "Visitor_TS%") val visitorTS: Float,
+    @field:Json(name = "Visitor_eFG%") val visitoreFG: Float,
+    @field:Json(name = "Visitor_FTARate") val visitorFTARate: Float,
+    @field:Json(name = "Visitor_3FGARate") val visitor3FGARate: Float,
+    @field:Json(name = "Visitor_TmOR%") val visitorOR: Float,
+    @field:Json(name = "Visitor_TmDR%") val visitorDR: Float,
+    @field:Json(name = "Visitor_BLK%") val visitorBLK: Float,
+    @field:Json(name = "Visitor_TOV%") val visitorTOV: Float,
+    @field:Json(name = "Visitor_STL%") val visitorSTL: Float,
+    @field:Json(name = "Local_Prediction") val localPrediction: String,
+    @field:Json(name = "Visitor_Prediction") val visitorPrediction: String
 )

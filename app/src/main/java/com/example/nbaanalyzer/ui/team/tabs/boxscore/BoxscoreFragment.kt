@@ -65,7 +65,7 @@ class BoxscoreFragment : Fragment() {
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f, 0f, 0f
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f, 0
                 )
                 TeamDataResponse(
                     -1, "", "", "", "",
@@ -114,7 +114,7 @@ class BoxscoreFragment : Fragment() {
             teamData.offensive_rebounds_per_game, teamData.defensive_rebounds_per_game, teamData.steals_per_game,
             teamData.blocks_per_game, teamData.turnovers_per_game, teamData.personal_fouls_per_game, teamData.tmOffRtg,
             teamData.tmFloor, teamData.defRtg, teamData.defRtg, teamData.tS, teamData.eFG, teamData.fTARate, teamData.threeFGARate,
-            teamData.tmOR, teamData.tmDR, teamData.bLK, teamData.tOV, teamData.aST, teamData.sTL, 0f
+            teamData.tmOR, teamData.tmDR, teamData.bLK, teamData.tOV, teamData.aST, teamData.sTL, 0f, 0
         )
         val players = listOf(teamAsPlayer) + teamData.players
         recyclerView.adapter = TableViewAdapter(players){
@@ -138,6 +138,7 @@ class BoxscoreFragment : Fragment() {
             intent.putExtra("DR%", it.dR)
             intent.putExtra("TS%", it.tS)
             intent.putExtra("eFG%", it.eFG)
+            intent.putExtra("team_id", it.team_id)
             if (it.player_id != -1)
                 startActivity(intent)
         }

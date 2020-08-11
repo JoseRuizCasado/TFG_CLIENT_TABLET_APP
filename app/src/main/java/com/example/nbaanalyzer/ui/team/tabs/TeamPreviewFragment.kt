@@ -255,6 +255,8 @@ class TeamPreviewFragment : Fragment() {
             }
         }
 
+        radarChart.yAxis.axisMinimum = 20f
+
         // radarChart.description.textColor = Color.WHITE
         radarChart.description = null
         radarChart.legend.isEnabled = false
@@ -297,7 +299,7 @@ class TeamPreviewFragment : Fragment() {
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f, 0f, 0f
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f, 0
                 )
                 TeamDataResponse(
                     -1, "", "", "", "",

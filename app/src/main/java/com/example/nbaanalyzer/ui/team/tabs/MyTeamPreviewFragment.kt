@@ -247,7 +247,7 @@ class MyTeamPreviewFragment : Fragment() {
                 return mActivities[value.toInt() % mActivities.size]
             }
         }
-        radarChart.yAxis.axisMinimum = 15f
+        radarChart.yAxis.axisMinimum = 20f
 
         // radarChart.description.textColor = Color.WHITE
         radarChart.description = null
@@ -289,7 +289,7 @@ class MyTeamPreviewFragment : Fragment() {
                     0f, 0f, 0f,
                     0f, 0f, 0f, 0f,
                     0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                    0f, 0f, 0f, 0f, 0f, 0f, 0f
+                    0f, 0f, 0f, 0f, 0f, 0f, 0f, 0
                 )
                 TeamDataResponse(
                     -1, "", "", "", "",

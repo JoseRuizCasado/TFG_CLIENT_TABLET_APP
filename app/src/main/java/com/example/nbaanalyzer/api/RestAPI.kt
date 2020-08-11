@@ -28,4 +28,8 @@ class RestAPI{
         return teamAPIService.getPlayerDefendInfo(player_id, player_position)
     }
 
+    fun getInform(team_id: Int, opponent_team_id: Int): Call<InformResponse>{
+        return teamAPIService.getInform(team_id, opponent_team_id)
+    }
+
 }

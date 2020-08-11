@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.Utils
+import com.example.nbaanalyzer.api.InformResponse
+import com.example.nbaanalyzer.api.RestAPI
+import com.example.nbaanalyzer.ui.player.PlayerActivity
 import com.example.nbaanalyzer.ui.team.TeamDetailsActivity
 import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.components.XAxis
@@ -19,6 +23,8 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlinx.android.synthetic.main.fragment_inform.view.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.math.abs
@@ -29,6 +35,9 @@ import kotlin.math.abs
 class InformFragment : Fragment() {
 
     private val utils = Utils()
+    lateinit var barChart: HorizontalBarChart
+    lateinit var textLocal: TextView
+    lateinit var textVisitor: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +52,23 @@ class InformFragment : Fragment() {
         informLayOut.informTextLocal.text = utils.getTeamById(teamId)
         informLayOut.informTextVisitor.text = utils.getTeamById(selectedTeam)
 
+        textLocal = informLayOut.informTexWinLocal
+        textVisitor = informLayOut.informTexWinVisitor
 
-        val barChart = informLayOut.findViewById<HorizontalBarChart>(R.id.inform_bar_chart)
+        barChart = informLayOut.findViewById(R.id.inform_bar_chart)
+
+        val opponentTeamID = (activity as TeamDetailsActivity).selectedTeam
+        val teamID = activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1)
+        getInform(teamID, opponentTeamID)
+
+        return informLayOut
+    }
+
+    private fun setUpBarChart(informResponse: InformResponse) {
+
+        textLocal.text = informResponse.localPrediction
+        textVisitor.text = informResponse.visitorPrediction
+
         barChart.setDrawGridBackground(false)
         barChart.description.isEnabled = false
 
@@ -78,17 +102,17 @@ class InformFragment : Fragment() {
         barChart.animateY(1500)
 
         val barEntries = ArrayList<BarEntry>()
-        barEntries.add(BarEntry(5f, floatArrayOf(-10f, 10f)))
-        barEntries.add(BarEntry(15f, floatArrayOf(-12f, 13f)))
-        barEntries.add(BarEntry(25f, floatArrayOf(-15f, 15f)))
-        barEntries.add(BarEntry(35f, floatArrayOf(-17f, 17f)))
-        barEntries.add(BarEntry(45f, floatArrayOf(-19f, 20f)))
-        barEntries.add(BarEntry(55f, floatArrayOf(-19f, 19f)))
-        barEntries.add(BarEntry(65f, floatArrayOf(-16f, 16f)))
-        barEntries.add(BarEntry(75f, floatArrayOf(-13f, 14f)))
-        barEntries.add(BarEntry(85f, floatArrayOf(-10f, 11f)))
-        barEntries.add(BarEntry(95f, floatArrayOf(-5f, 6f)))
-        barEntries.add(BarEntry(105f, floatArrayOf(-1f, 2f)))
+        barEntries.add(BarEntry(5f, floatArrayOf(-informResponse.localOffRtg, informResponse.visitorOffRtg)))
+        barEntries.add(BarEntry(15f, floatArrayOf(-informResponse.localFloor * 100, informResponse.visitorFloor * 100)))
+        barEntries.add(BarEntry(25f, floatArrayOf(-informResponse.localDefRtg, informResponse.visitorDefRtg)))
+        barEntries.add(BarEntry(35f, floatArrayOf(-informResponse.localPace, informResponse.visitorPace)))
+        barEntries.add(BarEntry(45f, floatArrayOf(-informResponse.localTS * 100, informResponse.visitorTS * 100)))
+        barEntries.add(BarEntry(55f, floatArrayOf(-informResponse.localeFG * 100, informResponse.visitoreFG * 100)))
+        barEntries.add(BarEntry(65f, floatArrayOf(-informResponse.local3FGARate * 100, informResponse.visitor3FGARate * 100)))
+        barEntries.add(BarEntry(75f, floatArrayOf(-informResponse.localFTARate * 100, informResponse.visitorFTARate * 100)))
+        barEntries.add(BarEntry(85f, floatArrayOf(-informResponse.localOR, informResponse.visitorOR)))
+        barEntries.add(BarEntry(95f, floatArrayOf(-informResponse.localDR, informResponse.visitorDR)))
+        barEntries.add(BarEntry(105f, floatArrayOf(-informResponse.localTOV, informResponse.visitorTOV)))
 
         val barDataSet = BarDataSet(barEntries, "Advanced stats")
         barDataSet.setDrawIcons(false)
@@ -106,8 +130,6 @@ class InformFragment : Fragment() {
         val barData = BarData(barDataSet)
         barData.barWidth = 8.5f
         barChart.data = barData
-
-        return informLayOut
     }
 
     private class CustomFormatter internal constructor(): ValueFormatter() {
@@ -120,14 +142,33 @@ class InformFragment : Fragment() {
 
     private class LabelFormatter internal constructor(): ValueFormatter() {
         private val mFormat: DecimalFormat = DecimalFormat("###")
-        private val stats = listOf("OffRtg", "DefRtg", "Pace", "TS%", "eFG%", "3PTRate", "FTRate",
-                                   "OR%", "DR%", "BLK%", "TO%").reversed()
+        private val stats = listOf("OffRtg", "Floor%", "DefRtg", "Pace", "TS%", "eFG%", "3PTRate", "FTRate",
+                                   "OR%", "DR%", "TO%")
         override fun getFormattedValue(value: Float): String {
             if (value.toInt()%10 == 0){
                 val n = abs(value.toInt()/10)
                 return if (n < 11) stats[n] else ""
             }
             return ""
+        }
+    }
+
+    private fun getInform(teamID: Int, opponentTeamID: Int){
+        doAsync {
+            val api = RestAPI()
+            val response = api.getInform(teamID, opponentTeamID).execute()
+            val inform = if (response.isSuccessful){
+                response.body()!!
+            }else{
+                InformResponse(0f, 0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f,
+                    0f, 0f, 0f, 0f, 0f,
+                0f, "", "")
+            }
+
+            uiThread { setUpBarChart(inform) }
         }
     }
 
