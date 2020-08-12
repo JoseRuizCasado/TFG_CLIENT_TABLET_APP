@@ -203,7 +203,7 @@ class PlayerPreviewFragment : Fragment() {
     }
 
     private fun getClusterLabel(cluster: Int, position: String): String{
-        var label = ""
+        var label = "Insufficient Info"
 
         if (cluster > 0 ){
             when (position){
@@ -224,7 +224,7 @@ class PlayerPreviewFragment : Fragment() {
                 }
                 "SF" -> when (cluster){
                     0 -> label = "Athletic"
-                    1 -> label = "Two Side Dominator"
+                    1 -> label = "2 Side Dominator"
                     2 -> label = "Inefficient Scorer"
                     3 -> label = "Efficient Scorer"
                     4 -> label = "3 Points Shooter"
@@ -240,7 +240,7 @@ class PlayerPreviewFragment : Fragment() {
                 "C" -> when (cluster){
                     0 -> label = "Role Defender"
                     1 -> label = "Scorer and Defender"
-                    2 -> label = "Two Side Dominator"
+                    2 -> label = "2 Side Dominator"
                     3 -> label = "Open 5"
                     4 -> label = "Defender"
                 }
