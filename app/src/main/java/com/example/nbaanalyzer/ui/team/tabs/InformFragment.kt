@@ -82,14 +82,14 @@ class InformFragment : Fragment() {
         barChart.axisRight.setDrawGridLines(false)
         barChart.axisRight.setDrawZeroLine(true)
         barChart.axisRight.valueFormatter = CustomFormatter()
-        barChart.axisRight.textSize = 9f
+        barChart.axisRight.textSize = 15f
         barChart.axisRight.isEnabled = false
 
         val xAxis: XAxis = barChart.xAxis
         xAxis.position = XAxisPosition.BOTH_SIDED
         xAxis.setDrawGridLines(false)
         xAxis.setDrawAxisLine(false)
-        xAxis.textSize = 9f
+        xAxis.textSize = 15f
         xAxis.axisMinimum = 0f
         xAxis.axisMaximum = 110f
         xAxis.setCenterAxisLabels(true)
@@ -117,7 +117,7 @@ class InformFragment : Fragment() {
         val barDataSet = BarDataSet(barEntries, "Advanced stats")
         barDataSet.setDrawIcons(false)
         barDataSet.valueFormatter = CustomFormatter()
-        barDataSet.valueTextSize = 7f
+        barDataSet.valueTextSize = 15f
         barDataSet.axisDependency = YAxis.AxisDependency.RIGHT
         barDataSet.setColors(
             Color.rgb(67, 67, 72),
