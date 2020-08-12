@@ -176,6 +176,7 @@ class PlayerPreviewFragment : Fragment() {
                 return mActivities[value.toInt() % mActivities.size]
             }
         }
+        radarChart.yAxis.axisMinimum = 12f
 
         // radarChart.description.textColor = Color.WHITE
         radarChart.description = null
