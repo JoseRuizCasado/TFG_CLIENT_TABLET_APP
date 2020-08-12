@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
 import com.example.nbaanalyzer.Utils
+import com.example.nbaanalyzer.ui.team.tabs.DefendInformFragment
 import com.example.nbaanalyzer.ui.team.tabs.boxscore.BoxscoreFragment
 import com.example.nbaanalyzer.ui.team.tabs.InformFragment
 import com.example.nbaanalyzer.ui.team.tabs.TeamPreviewFragment
@@ -30,6 +31,7 @@ class TeamDetailsActivity : AppCompatActivity() {
         fragmentAdapter.addFragment(TeamPreviewFragment(), "Team Preview")
         fragmentAdapter.addFragment(BoxscoreFragment(), "Boxscore")
         fragmentAdapter.addFragment(InformFragment(), "Inform")
+        fragmentAdapter.addFragment(DefendInformFragment(), "Defend Info")
 
         team_detail_pager.adapter = fragmentAdapter
         team_detail_tabs.setupWithViewPager(team_detail_pager)

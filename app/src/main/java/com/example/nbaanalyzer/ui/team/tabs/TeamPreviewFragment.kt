@@ -267,7 +267,6 @@ class TeamPreviewFragment : Fragment() {
     private fun initializeTeamData (teamData: TeamDataResponse){
         setUpRadarChart(teamData)
         setUpBarChart(teamData)
-        Toast.makeText(context, teamData.head_coach_name, Toast.LENGTH_LONG).show()
 
     }
 

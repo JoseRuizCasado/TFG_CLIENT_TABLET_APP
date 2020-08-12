@@ -233,7 +233,7 @@ class PlayerPreviewFragment : Fragment() {
                     0 -> label = "Two Side"
                     1 -> label = "Primary Scorer"
                     2 -> label = "Open 4"
-                    3 -> label = "Two Side Dominator"
+                    3 -> label = "2 Side Dominator"
                     4 -> label = "Role Player"
                     5 -> label = "Efficient Shooter"
                 }
