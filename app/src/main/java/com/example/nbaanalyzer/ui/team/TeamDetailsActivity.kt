@@ -24,9 +24,11 @@ class TeamDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_team_details)
 
         selectedTeam = intent.getIntExtra("teamId", 1)
+        val teamID = getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1)
 
-        val teamName = utils.getTeamById(selectedTeam)
-        tool_bar_team_detail.title =  teamName
+        val selectedTeamName = utils.getTeamById(selectedTeam)
+        val teamName = utils.getTeamById(teamID)
+        tool_bar_team_detail.title =  "$teamName vs $selectedTeamName"
         val fragmentAdapter = TabsAdapter(supportFragmentManager)
         fragmentAdapter.addFragment(TeamPreviewFragment(), "Team Preview")
         fragmentAdapter.addFragment(BoxscoreFragment(), "Boxscore")
