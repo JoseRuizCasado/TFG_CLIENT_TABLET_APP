@@ -18,4 +18,8 @@ interface TeamAPIService {
     @GET("advancedStatisticsCalculator/make-inform/{team_id}/vs/{opponent_team_id}")
     fun getInform(@Path("team_id") team_id: Int, @Path("opponent_team_id") opponent_team_id: Int): Call<InformResponse>
 
+    @GET("dbmanager/get-defend-inform/{team_id}/{opponent_team_id}")
+    fun getDefendInform(@Path(value = "team_id") team_id: Int,
+                        @Path(value = "opponent_team_id") opponent_team_id: Int): Call<BestDefendersResponse>
+
 }

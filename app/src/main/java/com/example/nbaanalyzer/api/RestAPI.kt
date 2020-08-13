@@ -32,4 +32,8 @@ class RestAPI{
         return teamAPIService.getInform(team_id, opponent_team_id)
     }
 
+    fun getDefendInform(team_id: Int, opponent_team_id: Int): Call<BestDefendersResponse>{
+        return teamAPIService.getDefendInform(team_id, opponent_team_id)
+    }
+
 }

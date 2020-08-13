@@ -221,3 +221,16 @@ data class InformResponse(
     @field:Json(name = "Local_Prediction") val localPrediction: String,
     @field:Json(name = "Visitor_Prediction") val visitorPrediction: String
 )
+
+data class BestDefendersResponse(
+    @field:Json(name = "PG") val pg_name: String,
+    @field:Json(name = "OpPG") val op_pg_name: String,
+    @field:Json(name = "SG") val sg_name: String,
+    @field:Json(name = "OpSG") val op_sg_name: String,
+    @field:Json(name = "SF") val sf_name: String,
+    @field:Json(name = "OpSF") val op_sf_name: String,
+    @field:Json(name = "PF") val pf_name: String,
+    @field:Json(name = "OpPF") val op_pf_name: String,
+    @field:Json(name = "C") val c_name: String,
+    @field:Json(name = "OpC") val op_c_name: String
+)
