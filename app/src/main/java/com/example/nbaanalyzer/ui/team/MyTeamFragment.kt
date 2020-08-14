@@ -57,8 +57,7 @@ class MyTeamFragment : Fragment() {
     }
 
     private fun populateViewPager(viewPager: ViewPager?) {
-        val tabsAdapter: TabsAdapter =
-            TabsAdapter(fragmentManager)
+        val tabsAdapter: TabsAdapter = TabsAdapter(fragmentManager)
         tabsAdapter.addFragment(MyTeamPreviewFragment(), getString(R.string.tab_team_preview))
         tabsAdapter.addFragment(MyBoxscoreFragment(), getString(R.string.tab_boxscore))
         viewPager?.adapter = tabsAdapter
