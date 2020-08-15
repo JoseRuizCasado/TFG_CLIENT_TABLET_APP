@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/informTextLocal"
+        android:id="@+id/textView50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="248dp"
@@ -82,9 +82,9 @@
         android:textColor="@color/colorPrimary"
         android:textSize="26sp"
         app:layout_constraintBottom_toTopOf="@+id/inform_bar_chart"
-        app:layout_constraintEnd_toEndOf="@+id/informTextLocal"
+        app:layout_constraintEnd_toEndOf="@+id/textView50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/informTextLocal"
+        app:layout_constraintTop_toBottomOf="@+id/textView50"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView

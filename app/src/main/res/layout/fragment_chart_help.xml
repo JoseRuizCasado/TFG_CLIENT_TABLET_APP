@@ -18,13 +18,109 @@
 
         <LinearLayout
             android:id="@+id/second_level_first_Chart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <com.github.mikephil.charting.charts.RadarChart
+                android:id="@+id/radar_chart_help_fragment"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="230dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp" />
 
             <TextView
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
-                android:text="@string/chart1_paragraph" />
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/chart1_paragraph"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/second_level_second_Chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/bar_chart_help_fragment"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="230dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/chart2_paragraph"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/second_level_third_Chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/stacked_bar_chart_help_fragment"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="230dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/chart3_paragraph"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/second_level_fourth_Chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie_chart_help_fragment"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="230dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/chart4_paragraph"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

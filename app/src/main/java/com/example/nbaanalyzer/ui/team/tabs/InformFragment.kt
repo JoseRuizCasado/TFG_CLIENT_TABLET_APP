@@ -12,7 +12,6 @@ import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.Utils
 import com.example.nbaanalyzer.api.InformResponse
 import com.example.nbaanalyzer.api.RestAPI
-import com.example.nbaanalyzer.ui.player.PlayerActivity
 import com.example.nbaanalyzer.ui.team.TeamDetailsActivity
 import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.components.XAxis
@@ -49,7 +48,7 @@ class InformFragment : Fragment() {
         val teamId = activity!!.getSharedPreferences("MyPref", Context.MODE_PRIVATE).getInt("teamId", -1)
         val selectedTeam = (activity as TeamDetailsActivity).selectedTeam
 
-        informLayOut.informTextLocal.text = utils.getTeamById(teamId)
+        informLayOut.textView50.text = utils.getTeamById(teamId)
         informLayOut.informTextVisitor.text = utils.getTeamById(selectedTeam)
 
         textLocal = informLayOut.informTexWinLocal

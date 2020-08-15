@@ -239,7 +239,7 @@ class PlayerPreviewFragment : Fragment() {
                 }
                 "C" -> when (cluster){
                     0 -> label = "Role Defender"
-                    1 -> label = "Scorer and Defender"
+                    1 -> label = "Two Way"
                     2 -> label = "2 Side Dominator"
                     3 -> label = "Open 5"
                     4 -> label = "Defender"

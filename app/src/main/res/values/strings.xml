@@ -11,11 +11,159 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="team_logo">Team Logo</string>
-    <string name="chart1_paragraph">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-        nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-        vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at
-        vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
-        augue duis dolore te feugait nulla facilisi.</string>
+    <string name="chart1_paragraph">
+        Advanced statistics are displayed on the radar chart that allow
+        evaluating the performance of a team during matches. The statistics included are the
+        offensive and defensive rating, the percentage of defensive and offensive rebounds percentage
+        and the percentage of efficient field goals. With these data we can get a fairly accurate
+        preliminary idea about the offensive and defensive capabilities of the team.
+    </string>
+    <string name="chart2_paragraph">
+        This bar chart shows the starter lineup usage.  This statistic
+        indicates the percentage of offensive plays the player finishes. This graph is intended to
+        offer a vision of which player has the most weight in the team\'s attack. This allows the
+        defense to focus on the player with the most offensive volume, focusing the opponent\'s
+        study on that player.
+    </string>
+    <string name="chart3_paragraph">
+        This stacked bar graph shows the team score distributed by player positions.
+        Within each position the points scored are divided into starters and substitutes.
+        This information allows identifying the most important positions within the starting
+        and alternate quintets.
+    </string>
+    <string name="chart4_paragraph">
+        This pie chart includes for each position the percentage of the points scored
+        by the team. In this graph it is observed which position is the highest scorer in each team
+        and on which one has to have a greater defensive presence.
+    </string>
+
+    <string name="cluster_help_p1">
+        To find the different styles of play within the classic basketball positions, a machine
+        learning model has been used that is capable of finding relationships between players based
+        on their advanced statistics. For each position a subdivision has been made, in each division
+        there is a more important statistic that defines the style of play of those players.
+    </string>
+
+    <string name="cluster_help_p2">
+        The point guard position has been divided into 5 sets. For each one a label is provided to
+        identify the style of play. \n
+        In cluster 0, starting point guards have been grouped whose offensive rating is high, as well
+        as the percentage of assists they distribute. This is why it has been labeled as: \"Scorer Playmaker\". \n
+        In cluster 1 the most important statistic seems to be the offensive rating, although it is not
+        very high, and we can usually find second-level players. The assigned label is: \"Secondary
+        Scorer\". \n
+        In cluster 2 the most important statistic seems to be the percentage of attendances,
+        which reaches almost fifty percent. The label assigned to these players is: \"Playmaker\". \n
+        In cluster 3, the combination of the offensive rating and the floor percentage stand out,
+        which are quite high. The players grouped here are effective scorers and the tag that has
+        been assigned is: \"Accurate Scorer\". \n
+        For the 4 cluster we have defensive experts, players who are capable of defending the best
+        points guards in the league. Their label is: \"Defender\". \n
+    </string>
+
+    <string name="cluster_help_p3">
+        To cluster the shooting guards, 6 different groups have been necessary to try to explain the
+        different types of shooting guards. \n
+        In cluster 0 the shooting guards that are capable of performing on the defensive and offensive
+        side have been grouped, especially standing out in the three-point shot. Its label is: \"3 and D\". \n
+        In cluster 1 there are shooting guards with high scoring ability, this is their main skill.
+        The way they tend to score the majority of their points is by shooting three or medium
+        distance shots. The label assigned to it is: \"Secondary Shooter\". \n
+        In cluster 2 we find players with a low offensive rating despite having a high use. This
+        indicates that they are players with a high volume of shots within their teams, but with
+        poor percentages. The assigned label is: \"Inefficient Scorer\". \n
+        In cluster 3 we find shooting guards who, despite having a not very high offensive rating,
+        have high success rates. This may be indicative that your majority of points are scored near
+        the rim. The label assigned to it is: \"Efficient Scorer\". \n
+        In cluster 4 we find a similar profile to cluster 3. In this case, if we observe the ratio of
+        triples it is higher, so we can consider the players in cluster 4 as shooters. Its label is:
+        \"Efficient Shooter\". \n
+        In cluster 5 the specialized guards in defense have been grouped. Although they are mainly
+        defenders, they are able to score with good percentages. The label assigned to them is:
+        \"Defender\". \n
+    </string>
+
+    <string name="cluster_help_p4">
+        For the small forwards 5 groups have been made. In these groups all the forwards in the
+        league are classified, so that players with a similar style of play are grouped together. \n
+        Cluster 0 includes small forwards that have a low offensive rating but compensate for it with
+        a floor percentage and are players with great physical abilities. This indicates that they
+        are players who score mostly in the paint. The label assigned to it is: \"Athletic\". \n
+        In cluster 1 there are dominant small forwards, the best in their position. They have very
+        good offensive and defensive ratings and very high shooting percentages. The label for this
+        cluster is: \"2 Side Dominator\". \n
+        In cluster 2 they are grouped into small forward who do not stand out in any statistics,
+        although the shooting percentages are not bad. These players are labeled as: \"Inefficient
+        Scorer\". \n
+        In cluster 3 there are players with good scoring abilities, but their use is not very high.
+        This indicates that they are players of limited importance on their teams. The label for
+        this cluster is: \"Efficient Scorer\". \n
+        In cluster 4 small forwards have been grouped with a high offensive rating but a low floor
+        percentage. This, added to their high triple ratio, indicates that they are specialists in
+        three pointer. The label for this cluster is: \"3 Points Shooter\" \n
+    </string>
+
+    <string name="cluster_help_p5">
+        Power forwards have also had to be grouped into 6 clusters in order to define the style of
+        play of all power forwards in the league. \n
+        In cluster 0 there are power forward with good qualities on both sides of the court,
+        although they do not become dominators of the game. The label that is assigned to this
+        cluster is: \"Two Side\". \n
+        In cluster 1 we find power forward with high scoring ability. His offensive rating is not
+        strikingly high, but his scoring percentages are. These players are labeled as: \"Primary
+        Scorer\". \n
+        In Cluster 2 we find power forward with offensive statistics similar to those in Cluster 0,
+        although they are slightly worse on defense. The big difference is noticeable in the ratio
+        of triples, since they are players with a high ratio and who base part of their scoring on
+        three pointers. The label for this cluster is: \"Open 4\". \n
+        In cluster 4 they are power forward with very low use. These players have decent offensive
+        ratings and good shooting percentages. They are within the rotations of their teams but they
+        have little importance within it. The label for this cluster is: \"2 Side Dominator\". \n
+        In Cluster 4 they are assisted by energy with very little use. These players have good
+        offensive behavior and good shooting percentages. They are within the rotations of their
+        teams but they have little importance within it. Theirs tag is: \"Role Player\". \n
+        This cluster is similar to the previous one, but the power forwards that comprise it have
+        greater usage in their teams, and consequently, greater importance in rotation. The shooting
+        percentages are bad, although the offensive rating is low. Theirs tag is: \"Efficient
+        Shooter\". \n
+    </string>
+
+    <string name="cluster_help_p6">
+        The centers have been grouped into 5 clusters that fit the different styles of play. \n
+        In cluster 0, centers with little use have been grouped, that is, not many attacks end.
+        Despite this, the offensive statistics of these centers are not bad, and they are capable
+        of scoring with good percentages. If we look at the defensive rating we can determine that
+        they are role players in the team whose main task is to defend. The label for this cluster
+        is: \"Role Defender\". \n
+        In cluster 1, the centers are important in their equipment, as seen in the average use of
+        the cluster. In the offensive part we find that they have a good offensive rating with a
+        good floor percentage, this indicates that they are able to score constantly despite not
+        having a high number of shots. The actual shooting percentage is quite high, which
+        reinforces the idea that they are reliable scorers. The defensive rating is low, so they
+        are also good defenders although they do not stand out for it. The label for this cluster
+        is: \"Two Way\". \n
+        The most dominant pivots have been grouped in cluster 2. As can be seen, their offensive
+        rating is very high, although it may be a consequence of the fact that, as observed in the
+        real percentage of shots and the percentage of effective field shots, they score the
+        majority of their shots. If we also look at their floor percentage, we can identify these
+        pivots as attacking finishers, that is, they score the majority of points under the rim.
+        On the defensive side they are also capable of dominating, as I know from their defensive
+        rating, which is one of the lowest, and the percentage of blocks they make. The label for
+        this cluster is: \"2 Side Dominator\". \n
+        Cluster 3 has been formed with centers that are capable of opening the court in attack
+        and scoring from the three-point line. This is observed in the ratio of 3s attempted,
+        despite shooting three, the actual shooting percentage and the percentage of field shooting
+        efficiency is relatively high. The use of these pivots is a little higher and this is
+        probably due to the fact that more attacks are finished thanks to making a triple from a
+        good position. The label for this cluster is: \"Open 5\". \n
+        In cluster 4 we find pivots with a lot of weight within the team. Its use is the highest
+        among the pivots, which indicates that many of the plays of their teams finish. Neither
+        the offensive rating nor the floor percentage are extremely high, but this may be due to
+        having a higher shot volume, which consequently causes more shots to miss than the rest.
+        The defensive rating does not seem to have had much importance in this cluster, since when
+        looking at the values of each player we find very varied data. The actual shooting
+        percentage is good and they indicate that they are players who, despite having a high volume
+        of shots, are capable of scoring consistently. The label for this cluster is: \"Defender\". \n
+    </string>
+
 </resources>

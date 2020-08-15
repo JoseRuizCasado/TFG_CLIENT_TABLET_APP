@@ -18,7 +18,9 @@ class GamePredictonHelpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game_predicton_help, container, false)
+        val helpFragment = inflater.inflate(R.layout.fragment_game_predicton_help, container, false)
+
+        return helpFragment
     }
 
 }
