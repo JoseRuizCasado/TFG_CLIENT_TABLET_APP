@@ -166,4 +166,18 @@
         of shots, are capable of scoring consistently. The label for this cluster is: \"Defender\". \n
     </string>
 
+    <string name="prediction_help_p1">
+        Match prediction is done using artificial intelligence methods, specifically a machine
+        learning model. This model predicts the winning team based on the advanced statistics of the
+        teams involved. In order for the model to be able to make predictions with acceptable
+        precision, the model has been trained with the data from the matches played during the
+        previous season.
+    </string>
+
+    <string name="prediction_help_p2">
+        For each match played, the advanced statistics for each team are calculated and the match is
+        labeled 1 if the home team wins and 0 otherwise. In total, the information from 633 matches
+        has been used to train the model and an accuracy of 75% has been achieved.
+    </string>
+
 </resources>
