@@ -6,16 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 
 import com.example.nbaanalyzer.R
-import com.example.nbaanalyzer.api.RestAPI
-import com.example.nbaanalyzer.api.ShotChartResponse
-import com.example.nbaanalyzer.models.Player
 import com.example.nbaanalyzer.ui.player.PlayerActivity
 import com.squareup.picasso.Picasso
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 
 class PlayerShotCharts : Fragment() {
