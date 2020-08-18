@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/player_shot_chart"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_marginStart="196dp"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="190dp"
         android:layout_marginBottom="360dp"
         android:src="@drawable/ic_washington_wizards"
@@ -20,15 +20,44 @@
 
     <ImageView
         android:id="@+id/player_shot_chart2"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_marginStart="193dp"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         android:layout_marginTop="190dp"
-        android:layout_marginEnd="196dp"
+        android:layout_marginEnd="96dp"
         android:layout_marginBottom="360dp"
         android:src="@drawable/ic_washington_wizards"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/player_shot_chart"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="8dp"
+        android:baselineAligned="false"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Made (o) and Miss (x) Shots"
+        android:textColor="@color/colorPrimary"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_shot_chart" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="200dp"
+        android:baselineAligned="false"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Made Shots Heat Map"
+        android:textColor="@color/colorPrimary"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_shot_chart2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
