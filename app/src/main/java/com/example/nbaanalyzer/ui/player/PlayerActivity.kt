@@ -5,13 +5,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.example.nbaanalyzer.R
 import com.example.nbaanalyzer.TabsAdapter
-import com.example.nbaanalyzer.api.RestAPI
-import com.example.nbaanalyzer.api.ShotChartResponse
 import com.example.nbaanalyzer.ui.player.tabs.PlayerPreviewFragment
 import com.example.nbaanalyzer.ui.player.tabs.PlayerShotCharts
 import kotlinx.android.synthetic.main.activity_player.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import kotlin.properties.Delegates
 
 class PlayerActivity : AppCompatActivity() {
