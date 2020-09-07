@@ -14,7 +14,7 @@
         android:layout_marginStart="172dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="IMPORTANT ADVANDCED STATS"
+        android:text="IMPORTANT ADVANCED STATS"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,9 +66,9 @@
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/team_preview_pie_chart"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="339dp"
+        android:layout_height="349dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="230dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -77,8 +77,8 @@
         android:id="@+id/team_preview_stacked_bar_chart"
         android:layout_width="350dp"
         android:layout_height="250dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="180dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="196dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team_preview_pie_chart" />
 

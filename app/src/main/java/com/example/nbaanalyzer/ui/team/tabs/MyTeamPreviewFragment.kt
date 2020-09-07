@@ -142,7 +142,12 @@ class MyTeamPreviewFragment : Fragment() {
 
         pieChart.animateY(1400, Easing.EaseInOutQuad)
 
-        pieChart.legend.isEnabled = false
+        val legend: Legend = pieChart.legend
+        legend.verticalAlignment = Legend.LegendVerticalAlignment.CENTER
+        legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+        legend.orientation = Legend.LegendOrientation.VERTICAL
+        legend.setDrawInside(false)
+
 
         pieChart.setEntryLabelColor(Color.WHITE)
         pieChart.setEntryLabelTextSize(12f)
@@ -154,7 +159,7 @@ class MyTeamPreviewFragment : Fragment() {
         pieEntriesList.add(PieEntry(pointsDistribution.pf.toFloat(), "PG"))
         pieEntriesList.add(PieEntry(pointsDistribution.c.toFloat(), "C"))
 
-        val pieDataSet = PieDataSet(pieEntriesList, "Score per position")
+        val pieDataSet = PieDataSet(pieEntriesList, "")
 
         val colors = ColorTemplate.MATERIAL_COLORS.toMutableList()
         colors.add(Color.rgb(255, 167, 38))

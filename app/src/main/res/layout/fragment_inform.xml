@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Win Predicction"
+        android:text="Win Prediction"
         android:textColor="@color/colorPrimary"
         android:textSize="26sp"
         app:layout_constraintBottom_toTopOf="@+id/inform_bar_chart"
